@@ -16,7 +16,7 @@ function App() {
 
   useEffect(() => {
     (
-        async () => {
+       async () => {
             const response = await fetch(process.env.REACT_APP_API+'auth/user',{
               method:'GET',
               headers:{'Content-Type':'application/json'},
@@ -29,7 +29,7 @@ function App() {
             console.log(isLoggedIn + ' user hahahahahhaha');
             if(content.title !== 'Unauthorized')
             {
-              setLoggingState(true) ;
+              setLoggingState(true);
             }
             console.log(isLoggedIn + ' user hahahahahhaha');
         }

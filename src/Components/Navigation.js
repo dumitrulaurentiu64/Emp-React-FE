@@ -4,6 +4,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 const Navigation = (props) => {
 
+
     const logout = async () => {
         await fetch(process.env.REACT_APP_API+'auth/logout',{
             method:'POST',
@@ -13,25 +14,21 @@ const Navigation = (props) => {
             },
             credentials:'include'
         });
-        console.log(props.isLoggedIn + 'BEFORE logout hahahahah');
         props.setLoggingState(false);
-        console.log(props.isLoggedIn + 'AFTER logout hahahahah');
-        window.location.pathname = ('/login');
     }
 
     let menu;
 
-    if ( props.isLoggedIn === true )
+    if (props.isLoggedIn)
     {
         menu = (
-            <NavLink onClick={logout} to="/Login" className="nav-link" >Logout
-                {/* <Dropdown.Item href="/Login">Logout</Dropdown.Item> */}
+            <NavLink to='/Login' onClick={logout} className="nav-link" >Logout
+
             </NavLink>
         );
     }  else {
         menu = (
             <NavLink to="/Login" className="nav-link" >Login
-                {/* <Dropdown.Item href="/Login">Login</Dropdown.Item> */}
             </NavLink>
         );
     }
@@ -54,13 +51,11 @@ const Navigation = (props) => {
                             <Dropdown.Menu variant="dark">
 
                                 <NavLink to="/Profile" className="nav-link" >Profile
-                                    {/* <Dropdown.Item href="/Profile">Profile</Dropdown.Item> */}
                                 </NavLink>
 
                                 {menu}
 
                                 <NavLink to="/Register" className="nav-link" >Register
-                                    {/* <Dropdown.Item href="/Register">Register</Dropdown.Item> */}
                                 </NavLink>
 
                             </Dropdown.Menu>

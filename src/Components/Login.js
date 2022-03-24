@@ -6,6 +6,7 @@ export class Login extends Component {
 
     constructor(props){
         super(props);
+        this.state={loggingState:false};
     }
 
     handleSubmit(event){
@@ -24,9 +25,10 @@ export class Login extends Component {
         })
         .then(res=>res.json())
         .then((result)=>{
-            console.log(this.props.isLoggedIn);
+            console.log(this.state.loggingState);
+            this.setState({loggingState: true});
             this.props.setLoggingState(true);
-            console.log(this.props.isLoggedIn);
+            console.log(this.state.loggingState);
             console.log(result);
         },
         (error)=>{
@@ -36,8 +38,8 @@ export class Login extends Component {
     }   
         
     render(){
-        console.log(this.props.isLoggedIn);
-        if (this.props.isLoggedIn) {
+        console.log(this.state.loggingState);
+        if (this.state.loggingState) {
             return <Navigate to="/"/>;
         }
 
