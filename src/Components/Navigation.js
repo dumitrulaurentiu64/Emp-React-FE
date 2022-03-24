@@ -22,13 +22,14 @@ const Navigation = (props) => {
     if (props.isLoggedIn)
     {
         menu = (
-            <NavLink to='/Login' onClick={logout} className="nav-link" >Logout
-
+            <NavLink to='/Login' onClick={logout} className="nav-link" >
+                <Dropdown.Item href="/Login">Logout</Dropdown.Item>
             </NavLink>
         );
     }  else {
         menu = (
-            <NavLink to="/Login" className="nav-link" >Login
+            <NavLink to="/Login" className="nav-link" >
+                <Dropdown.Item href="/Login">Logout</Dropdown.Item>
             </NavLink>
         );
     }
@@ -50,12 +51,14 @@ const Navigation = (props) => {
 
                             <Dropdown.Menu variant="dark">
 
-                                <NavLink to="/Profile" className="nav-link" >Profile
+                                <NavLink to="/Profile" className="nav-link" >
+                                <Dropdown.Item href="/Profile">Profile</Dropdown.Item>
                                 </NavLink>
 
                                 {menu}
 
-                                <NavLink to="/Register" className="nav-link" >Register
+                                <NavLink to="/Register" className="nav-link" >
+                                <Dropdown.Item href="/Register">Register</Dropdown.Item>
                                 </NavLink>
 
                             </Dropdown.Menu>
