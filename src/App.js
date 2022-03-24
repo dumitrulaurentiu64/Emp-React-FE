@@ -11,7 +11,7 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
 function App() {
 
-  const [isLoggedIn, changeLoggingState] = useState('false');
+  const [isLoggedIn, changeLoggingState] = useState(false);
   const setLoggingState = (logState) => changeLoggingState(logState);
 
   useEffect(() => {
@@ -29,9 +29,9 @@ function App() {
             console.log(isLoggedIn + ' user hahahahahhaha');
             if(content.title !== 'Unauthorized')
             {
-              setLoggingState(true);
+              setLoggingState(true) ;
             }
-
+            console.log(isLoggedIn + ' user hahahahahhaha');
         }
     )();
   });

@@ -4,50 +4,6 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 const Navigation = (props) => {
 
-//    checkUser(){
-//     fetch(process.env.REACT_APP_API+'auth/user',{
-//         method:'GET',
-//         headers:{'Content-Type':'application/json'},
-//         credentials: 'include'
-//         }).then(response=>response.json())
-//         .then((data)=>{
-            
-//         },
-//         (error)=>{
-
-//         });
-
-//    }
-
-    // componentDidMount(){
-    //     //this.checkUser();
-    // }
-
-    // componentDidUpdate(){
-    //     //this.checkUser();
-    // }
-
-    // logout(event){
-    //     event.preventDefault();
-
-    //     fetch(process.env.REACT_APP_API+'auth/logout',{
-    //         method:'POST',
-    //         headers:{
-    //             'Accept':'application/json',
-    //             'Content-Type':'application/json'
-    //         },
-    //         credentials:'include'
-    //     })
-    //     .then(res=>res.json())
-    //     .then((result)=>{
-
-    //         console.log(this.props.isLoggedIn);
-    //     },
-    //     (error)=>{
-    //         console.log();
-    //     })
-    // }
-
     const logout = async () => {
         await fetch(process.env.REACT_APP_API+'auth/logout',{
             method:'POST',
@@ -60,23 +16,23 @@ const Navigation = (props) => {
         console.log(props.isLoggedIn + 'BEFORE logout hahahahah');
         props.setLoggingState(false);
         console.log(props.isLoggedIn + 'AFTER logout hahahahah');
+        window.location.pathname = ('/login');
     }
 
     let menu;
 
-
     if ( props.isLoggedIn === true )
     {
         menu = (
-                <NavLink to="/Login" onClick={logout} className="nav-link" >
-                    <Dropdown.Item href="/Login">Logout</Dropdown.Item>
-                </NavLink>
+            <NavLink onClick={logout} to="/Login" className="nav-link" >Logout
+                {/* <Dropdown.Item href="/Login">Logout</Dropdown.Item> */}
+            </NavLink>
         );
     }  else {
         menu = (
-                <NavLink to="/Login" className="nav-link" >
-                    <Dropdown.Item href="/Login">Login</Dropdown.Item>
-                </NavLink>
+            <NavLink to="/Login" className="nav-link" >Login
+                {/* <Dropdown.Item href="/Login">Login</Dropdown.Item> */}
+            </NavLink>
         );
     }
           
@@ -97,14 +53,14 @@ const Navigation = (props) => {
 
                             <Dropdown.Menu variant="dark">
 
-                                <NavLink to="/Profile" className="nav-link" >
-                                    <Dropdown.Item href="/Profile">Profile</Dropdown.Item>
+                                <NavLink to="/Profile" className="nav-link" >Profile
+                                    {/* <Dropdown.Item href="/Profile">Profile</Dropdown.Item> */}
                                 </NavLink>
 
                                 {menu}
 
-                                <NavLink to="/Register" className="nav-link" >
-                                    <Dropdown.Item href="/Register">Register</Dropdown.Item>
+                                <NavLink to="/Register" className="nav-link" >Register
+                                    {/* <Dropdown.Item href="/Register">Register</Dropdown.Item> */}
                                 </NavLink>
 
                             </Dropdown.Menu>
