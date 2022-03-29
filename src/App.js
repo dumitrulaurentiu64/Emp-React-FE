@@ -6,12 +6,15 @@ import {Home} from './Components/Home';
 import {Login} from './Components/Login';
 import {Register} from './Components/Register';
 import Navigation from './Components/Navigation';
+import {Profile} from './Components/Profile';
+import Flyer from './Components/Flyer';
 
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
 function App() {
 
   const [isLoggedIn, changeLoggingState] = useState(false);
+  const [role, setRole] = useState('visitor');
   const setLoggingState = (logState) => changeLoggingState(logState);
 
   useEffect(() => {
@@ -24,14 +27,17 @@ function App() {
               });
 
             const content = await response.json();
-
+            console.log('below is the content');
             console.log(content);
             console.log(isLoggedIn + ' user hahahahahhaha');
             if(content.title !== 'Unauthorized')
             {
+              setRole(content.User_Role);
               setLoggingState(true);
             }
+            console.log(role + ' <- this is the user role');
             console.log(isLoggedIn + ' user hahahahahhaha');
+            console.log(!(role === 'visitor'));
         }
     )();
   });
@@ -44,13 +50,15 @@ function App() {
       </h3>
     </div>
 
-    <Navigation isLoggedIn={isLoggedIn} setLoggingState={setLoggingState} />
+    <Navigation isLoggedIn={isLoggedIn} setLoggingState={setLoggingState} role={role} setRole={setRole}/>
     <Routes>
-      <Route path='/' element={<Home/>} />
-      <Route path='/department' element={<Department/>}/>
-      <Route path='/employee' element={<Employee/>}/>
-      <Route path='/login' element={<Login isLoggedIn={isLoggedIn} setLoggingState={setLoggingState}/>} />
-      <Route path='/register' element={<Register/>} />
+      { isLoggedIn && role === 'admin' && <Route path='/' element={<Home/>} /> }
+      { isLoggedIn && role === 'admin' && <Route path='/department' element={<Department/>}/> }
+      { isLoggedIn && role === 'admin' && <Route path='/employee' element={<Employee/>}/> }
+      { isLoggedIn && role !== 'visitor' && <Route path='/flyer' element={<Flyer/>}/> }
+      { isLoggedIn && role !== 'visitor' && <Route path='/profile' element={<Profile/>}/> }
+      { !isLoggedIn && <Route path='/login' element={<Login isLoggedIn={isLoggedIn} setLoggingState={setLoggingState}/>} /> }
+      <Route path='/register' element={<Register/>} /> 
     </Routes>
     </BrowserRouter>
   );
