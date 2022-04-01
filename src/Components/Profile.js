@@ -1,103 +1,77 @@
 import React,{Component} from 'react';
-import {Table} from 'react-bootstrap';
 
-import {Button,ButtonToolbar} from 'react-bootstrap';
-import {AddEmpModal} from './AddEmpModal';
-import {EditEmpModal} from './EditEmpModal';
-
-export class Profile extends Component{
-    mounted = false;
-
+export class Profile extends Component {
 
     constructor(props){
         super(props);
-        this.state={emps:[], addModalShow:false, editModalShow:false}
+        this.state={profile:null}
     }
 
-    refreshList(){
-        fetch(process.env.REACT_APP_API+'employee')
+    getProfile(){
+        fetch(process.env.REACT_APP_API+'employee/'+this.props.code,{
+            method:'GET',
+            header:{'Accept':'application/json',
+        'Content-Type':'application/json'}
+        })
         .then(response=>response.json())
         .then(data=>{
-            this.setState({emps:data});
+            console.log(data);
+            this.setState({profile:data});
         });
     }
 
     componentDidMount(){
-        this.refreshList();
+        this.getProfile();
     }
 
-    deleteEmp(empid){
-        if(window.confirm('Are you sure?')){
-            fetch(process.env.REACT_APP_API+'employee/'+empid,{
-                method:'DELETE',
-                header:{'Accept':'application/json',
-            'Content-Type':'application/json'}
-            })
-        }
-        this.refreshList();
+    componentDidUpdate() {
+        //this.getProfile();
     }
-    
-    render(){
-        const {emps, empid, empname, depmt, photofilename, doj}=this.state;
-        let addModalClose=()=>this.setState({addModalShow:false});
-        let editModalClose=()=>this.setState({editModalShow:false});
-        return(
-            <div >
-                <Table className="mt-4 mx-4" striped bordered hover size ="sm">
-                    <thead>
-                        <tr>
-                            <th>EmployeeId</th>
-                            <th>EmployeeName</th>
-                            <th>Department</th>
-                            <th>DOJ</th>
-                            <th>Options</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {emps.map(emp=>
-                            <tr key={emp.EmployeeId}>
-                                <td>{emp.EmployeeId}</td>
-                                <td>{emp.EmployeeName}</td>
-                                <td>{emp.Department}</td>
-                                <td>{emp.DateOfJoining}</td>
-                                <td>
-<ButtonToolbar>
-    <Button className="mr-2" variant="info"
-    onClick={()=>this.setState({editModalShow:true,
-        empid:emp.EmployeeId,empname:emp.EmployeeName,depmt:emp.Department,photofilename:emp.PhotoFileName,doj:emp.DateOfJoining})}>
-            Edit
-        </Button>
 
-        <Button className="mr-2" variant="danger"
-    onClick={()=>this.deleteEmp(emp.EmployeeId)}>
-            Delete
-        </Button>
-
-        <EditEmpModal show={this.state.editModalShow}
-        onHide={editModalClose}
-        empid={empid}
-        empname={empname}
-        depmt={depmt}
-        photofilename={photofilename}
-        doj={doj}/>
-</ButtonToolbar>
-
-                                </td>
-
-                            </tr>)}
-                    </tbody>
-
-                </Table>
-
-                <ButtonToolbar>
-                    <Button variant='primary'
-                    onClick={()=>this.setState({addModalShow:true})}>
-                    Add Employee</Button>
-
-                    <AddEmpModal show={this.state.addModalShow}
-                    onHide={addModalClose}/>
-                </ButtonToolbar>
+    render() {
+        return (
+        <div className="container rounded bg-white mt-5 mb-5">
+            <div className="row">
+                <div className="col-md-3 border-right">
+                    <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="rounded-circle mt-5" width="150px" 
+                    src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"></img>
+                    <span className="font-weight-bold">Edogaru</span><span className="text-black-50">{this.props.email}</span><span> </span></div>
+                </div>
+                <div className="col-md-5 border-right">
+                    <div className="p-3 py-5">
+                        <div className="d-flex justify-content-between align-items-center mb-3">
+                            <h4 className="text-right">Profile Settings</h4>
+                        </div>
+                        <div className="row mt-2">
+                            <div className="col-md-6"><label className="labels">Name</label><input type="text" className="form-control" placeholder="first name" value=""></input></div>
+                            <div className="col-md-6"><label className="labels">Surname</label><input type="text" className="form-control" value="" placeholder="surname"></input></div>
+                        </div>
+                        <div className="row mt-3">
+                            <div className="col-md-12"><label className="labels">Mobile Number</label><input type="text" className="form-control" placeholder="enter phone number" value=""></input></div>
+                            <div className="col-md-12"><label className="labels">Address Line 1</label><input type="text" className="form-control" placeholder="enter address line 1" value=""></input></div>
+                            <div className="col-md-12"><label className="labels">Address Line 2</label><input type="text" className="form-control" placeholder="enter address line 2" value=""></input></div>
+                            <div className="col-md-12"><label className="labels">Postcode</label><input type="text" className="form-control" placeholder="enter address line 2" value=""></input></div>
+                            <div className="col-md-12"><label className="labels">State</label><input type="text" className="form-control" placeholder="enter address line 2" value=""></input></div>
+                            <div className="col-md-12"><label className="labels">Area</label><input type="text" className="form-control" placeholder="enter address line 2" value=""></input></div>
+                            <div className="col-md-12"><label className="labels">Email ID</label><input type="text" className="form-control" placeholder="enter email id" value=""></input></div>
+                            <div className="col-md-12"><label className="labels">Education</label><input type="text" className="form-control" placeholder="education" value=""></input></div>
+                        </div>
+                        <div className="row mt-3">
+                            <div className="col-md-6"><label className="labels">Country</label><input type="text" className="form-control" placeholder="country" value=""></input></div>
+                            <div className="col-md-6"><label className="labels">State/Region</label><input type="text" className="form-control" value="" placeholder="state"></input></div>
+                        </div>
+                        <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="button">Save Profile</button></div>
+                    </div>
+                </div>
+                <div className="col-md-4">
+                    <div className="p-3 py-5">
+                        <div className="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span className="border px-3 p-1 add-experience"><i className="fa fa-plus"></i>&nbsp;Experience</span></div>
+                        <div className="col-md-12"><label className="labels">Experience in Designing</label><input type="text" className="form-control" placeholder="experience" value=""></input></div> 
+                        <div className="col-md-12"><label className="labels">Additional Details</label><input type="text" className="form-control" placeholder="additional details" value=""></input></div>
+                    </div>
+                </div>
             </div>
+        </div>
         )
     }
     

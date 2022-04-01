@@ -15,6 +15,8 @@ function App() {
 
   const [isLoggedIn, changeLoggingState] = useState(false);
   const [role, setRole] = useState('visitor');
+  const [code, setCode] = useState(0);
+  const [email, setEmail] = useState('default@email.com');
   const setLoggingState = (logState) => changeLoggingState(logState);
 
   useEffect(() => {
@@ -33,6 +35,8 @@ function App() {
             if(content.title !== 'Unauthorized')
             {
               setRole(content.User_Role);
+              setCode(content.Id);
+              setEmail(content.Email);
               setLoggingState(true);
             }
             console.log(role + ' <- this is the user role');
@@ -56,7 +60,7 @@ function App() {
       { isLoggedIn && role === 'admin' && <Route path='/department' element={<Department/>}/> }
       { isLoggedIn && role === 'admin' && <Route path='/employee' element={<Employee/>}/> }
       { isLoggedIn && role !== 'visitor' && <Route path='/flyer' element={<Flyer/>}/> }
-      { isLoggedIn && role !== 'visitor' && <Route path='/profile' element={<Profile/>}/> }
+      { isLoggedIn && role !== 'visitor' && <Route path='/profile' element={<Profile code={code} email={email}/>}/> }
       { !isLoggedIn && <Route path='/login' element={<Login isLoggedIn={isLoggedIn} setLoggingState={setLoggingState}/>} /> }
       <Route path='/register' element={<Register/>} /> 
     </Routes>
