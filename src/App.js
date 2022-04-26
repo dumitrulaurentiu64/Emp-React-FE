@@ -11,12 +11,10 @@ import Flyer from './Components/Flyer';
 
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
-function App() {
+function App(props) {
 
   const [isLoggedIn, changeLoggingState] = useState(false);
-  const [role, setRole] = useState('visitor');
-  const [code, setCode] = useState(0);
-  const [email, setEmail] = useState('default@email.com');
+  
   const setLoggingState = (logState) => changeLoggingState(logState);
 
   useEffect(() => {
@@ -29,20 +27,25 @@ function App() {
               });
 
             const content = await response.json();
+            console.log('WHAT THE HELL ' + getRole() + ' ' + isLoggedIn);
             console.log('below is the content');
             console.log(content);
             console.log(isLoggedIn + ' user hahahahahhaha');
+            console.log(props.user);
             if(content.title !== 'Unauthorized')
             {
-              setRole(content.User_Role);
-              setCode(content.Id);
-              setEmail(content.Email);
+              props.user.Id = content.Id;
+              props.user.User_Role = content.User_Role;
+              props.user.Email = content.Email;
+              props.user.Name = content.Name;
               setLoggingState(true);
+              
             }
-            console.log(role + ' <- this is the user role');
+            console.log(props.user);
+            console.log(props.user.User_Role + ' <- this is the user role');
             console.log(isLoggedIn + ' user hahahahahhaha');
-            console.log(!(role === 'visitor'));
-        }
+            console.log(props.user.User_Role === 'admin'); 
+          }
     )();
   });
 
@@ -50,22 +53,28 @@ function App() {
     <BrowserRouter>
       <div className="container">
       <h3 className ="m-3 d-flex justify-content-center">
-        Employee App
+     Employee App
       </h3>
     </div>
 
-    <Navigation isLoggedIn={isLoggedIn} setLoggingState={setLoggingState} role={role} setRole={setRole}/>
+    <Navigation isLoggedIn={isLoggedIn} setLoggingState={setLoggingState} user={props.user}/>
     <Routes>
-      { isLoggedIn && role === 'admin' && <Route path='/' element={<Home/>} /> }
-      { isLoggedIn && role === 'admin' && <Route path='/department' element={<Department/>}/> }
-      { isLoggedIn && role === 'admin' && <Route path='/employee' element={<Employee/>}/> }
-      { isLoggedIn && role !== 'visitor' && <Route path='/flyer' element={<Flyer/>}/> }
-      { isLoggedIn && role !== 'visitor' && <Route path='/profile' element={<Profile code={code} email={email}/>}/> }
-      { !isLoggedIn && <Route path='/login' element={<Login isLoggedIn={isLoggedIn} setLoggingState={setLoggingState}/>} /> }
+      { isLoggedIn && getRole() === 'admin' && <Route path='/' element={<Home/>} /> }
+      { isLoggedIn && getRole() === 'admin' && <Route path='/department' element={<Department/>}/> }
+      { isLoggedIn && getRole() === 'admin' && <Route path='/employee' element={<Employee/>}/> }
+      { isLoggedIn && getRole() !== 'visitor' && <Route path='/flyer' element={<Flyer/>}/> }
+      { isLoggedIn && getRole() !== 'visitor' && <Route path='/profile' element={<Profile user={props.user}/>}/> }
+      { !isLoggedIn && <Route path='/login' element={<Login user={props.user} isLoggedIn={isLoggedIn} setLoggingState={setLoggingState}/>} /> }
       <Route path='/register' element={<Register/>} /> 
     </Routes>
     </BrowserRouter>
   );
+
+
+  function getRole()
+  {
+    return props.user.User_Role;
+  }
 }
 
 export default App;

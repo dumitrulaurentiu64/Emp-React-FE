@@ -15,7 +15,7 @@ const Navigation = (props) => {
             credentials:'include'
         });
         props.setLoggingState(false);
-        props.setRole('visitor');
+        props.user.User_Role = 'visitor';
     }
 
     let menu;
@@ -34,16 +34,20 @@ const Navigation = (props) => {
             </NavLink>
         );
     }
-          
+
+    console.log(props.user.User_Role + " AAAAAAAAAAAAAAAAAAAAAAAAAA");
+    console.log(props.isLoggedIn + " BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+    console.log("rerender  " + props.isLoggedIn + "  " + getRole());
+
     return (
         <div>
             <nav className="navbar navbar-expand-md navbar-dark bg-dark mb-4">
                 <div className="container-fluid">
                     <div>
-                        { props.isLoggedIn && props.role === 'admin' && <NavLink to="/" className="navbar-brand">Configuration</NavLink> }
-                        { props.isLoggedIn && props.role === 'admin' && <NavLink to="/Department" className="navbar-brand">Departments</NavLink> }
-                        { props.isLoggedIn && props.role === 'admin' && <NavLink to="/Employee" className="navbar-brand">Employees</NavLink> }
-                        { props.isLoggedIn && props.role !== 'visitor' && <NavLink to="/Profile" className="navbar-brand">Profile</NavLink> }
+                        { props.isLoggedIn && getRole() === 'admin' && <NavLink to="/" className="navbar-brand">Configuration</NavLink> }
+                        { props.isLoggedIn && getRole() === 'admin' && <NavLink to="/Department" className="navbar-brand">Departments</NavLink> }
+                        { props.isLoggedIn && getRole() === 'admin' && <NavLink to="/Employee" className="navbar-brand">Employees</NavLink> }
+                        { props.isLoggedIn && getRole() !== 'visitor' && <NavLink to="/Profile" className="navbar-brand">Profile</NavLink> }
                     </div>
                     <div>
                         <Dropdown>
@@ -52,13 +56,13 @@ const Navigation = (props) => {
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu variant="dark">
-                                {props.isLoggedIn && props.role !== 'visitor' &&  
+                                {props.isLoggedIn && getRole() !== 'visitor' &&  
                                 <NavLink to="/Profile" className="nav-link" >
                                 <Dropdown.Item href="/Profile">Profile</Dropdown.Item>
                                 </NavLink>
                                 }
                                 {menu}
-                                {props.role === 'visitor' && 
+                                {props.user.User_Role === 'visitor' && 
                                 <NavLink to="/Register" className="nav-link" >
                                 <Dropdown.Item href="/Register">Register</Dropdown.Item>
                                 </NavLink>
@@ -71,6 +75,11 @@ const Navigation = (props) => {
             </nav>
         </div>
     );
+
+function getRole()
+  {
+    return props.user.User_Role;
+  }
 };
 
 export default Navigation;

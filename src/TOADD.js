@@ -1,13 +1,22 @@
 // SHOP
-// DROPDOWN                     DONE
-// ADMIN/EMPLOYEE ROLES
-// 
-//
-// <NavLink to="/Login" className="nav-link" onClick={logout}>Logout</NavLink>
 
-{/* <ul className="navbar-nav me-auto mb-2 mb-md-0">
-                                    {menu}
-                                    <li className="nav-item active">
-                                        <NavLink to="/Register" className="nav-link" >Register</NavLink>
-                                    </li>
-                                </ul> */}  
+
+// FINISH PROFILE SECTION
+
+
+// ADD ALL FIELDS FOR EMPLOYEES
+
+
+// DO THE CONFIGURATION PAGE
+
+
+// DO THE FLYERS
+
+
+// MAKE THE APP FANCY
+
+
+// SEND EMAIL       DONE
+// CHANGE PASSWORD  DONE
+
+// BCJRE-GADZG-5V9P3

@@ -8,7 +8,6 @@ import {EditEmpModal} from './EditEmpModal';
 export class Employee extends Component{
     mounted = false;
 
-
     constructor(props){
         super(props);
         this.state={emps:[], addModalShow:false, editModalShow:false}
@@ -26,7 +25,7 @@ export class Employee extends Component{
         this.refreshList();
     }
 
-    componentDidUpdate(prevState) {
+    componentDidUpdate() {
         //this.refreshList();
     }
 

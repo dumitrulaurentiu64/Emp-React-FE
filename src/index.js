@@ -4,9 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const user = ({
+  Id: 0,
+  Name: 'default',
+  Email: 'default@gmail.com',
+  User_Role: 'visitor'
+});
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App user={user}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

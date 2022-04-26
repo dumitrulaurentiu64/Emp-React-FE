@@ -9,6 +9,25 @@ export class Login extends Component {
         this.state={loggingState:false};
     }
 
+    async fetchUser() {
+        const response = await fetch(process.env.REACT_APP_API+'auth/user',{
+            method:'GET',
+            headers:{'Content-Type':'application/json'},
+            credentials: 'include'
+            });
+
+        const content = await response.json();
+        if(content.title !== 'Unauthorized')
+        {
+            this.props.user.Id = content.Id;
+            this.props.user.User_Role = content.User_Role;
+            this.props.user.Email = content.Email;
+            this.props.user.Name = content.Name;
+            this.props.setLoggingState(true);
+            
+        }
+    };
+
     handleSubmit(event){
         event.preventDefault();
         fetch(process.env.REACT_APP_API+'auth/login',{
@@ -25,16 +44,15 @@ export class Login extends Component {
         })
         .then(res=>res.json())
         .then((result)=>{
-            console.log(this.state.loggingState);
+            console.log('LOGIN ' + this.state.loggingState);
             this.setState({loggingState: true});
-            this.props.setLoggingState(true);
-            console.log(this.state.loggingState);
+            this.fetchUser();
+            console.log('LOGIN ' + this.state.loggingState);
             console.log(result);
         },
         (error)=>{
             console.log('Failed');
         })
-
     }   
         
     render(){
