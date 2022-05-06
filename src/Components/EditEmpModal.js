@@ -30,10 +30,16 @@ export class EditEmpModal extends Component{
             },
             body:JSON.stringify({
                 EmployeeId:event.target.EmployeeId.value,
-                EmployeeName:event.target.EmployeeName.value,
+                Name:event.target.Name.value,
+                Lastname:event.target.Lastname.value,
+                Position:event.target.Position.value,
                 Department:event.target.Department.value,
                 DateOfJoining:event.target.DateOfJoining.value,
-                PhotoFileName:this.photofilename
+                PhotoFileName:this.photofilename,
+                BaseSalary:event.target.BaseSalary.value,
+                Increase:event.target.Increase.value,
+                GrossPrizes:event.target.GrossPrizes.value,
+                Deductions:event.target.Deductions.value
 
             })
         })
@@ -99,11 +105,22 @@ centered
                         defaultValue={this.props.empid}/>
                     </Form.Group>
 
-                    <Form.Group controlId="EmployeeName">
-                        <Form.Label>EmployeeName</Form.Label>
-                        <Form.Control type="text" name="EmployeeName" required 
-                        defaultValue={this.props.empname}
-                        placeholder="EmployeeName"/>
+                    <Form.Group controlId="Name">
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control type="text" name="Name" required 
+                        placeholder="Name"/>
+                    </Form.Group>
+
+                    <Form.Group controlId="Lastname">
+                        <Form.Label>Lastname</Form.Label>
+                        <Form.Control type="text" name="Lastname" required 
+                        placeholder="Lastname"/>
+                    </Form.Group>
+
+                    <Form.Group controlId="Position">
+                        <Form.Label>Position</Form.Label>
+                        <Form.Control type="text" name="Position" required 
+                        placeholder="Position"/>
                     </Form.Group>
 
                     <Form.Group controlId="Department">
@@ -124,6 +141,32 @@ centered
                         defaultValue={this.props.doj}
                         />
                     </Form.Group>
+
+                    <Form.Group controlId="BaseSalary">
+                        <Form.Label>BaseSalary</Form.Label>
+                        <Form.Control type="number" name="BaseSalary" required 
+                        placeholder="BaseSalary"/>
+                    </Form.Group>
+
+                    <Form.Group controlId="Increase">
+                        <Form.Label>Increase</Form.Label>
+                        <Form.Control type="number" name="Increase" required 
+                        placeholder="Increase"/>
+                    </Form.Group>
+
+                    <Form.Group controlId="GrossPrizes">
+                        <Form.Label>Gross Prizes</Form.Label>
+                        <Form.Control type="number" name="GrossPrizes" required 
+                        placeholder="GrossPrizes"/>
+                    </Form.Group>
+
+                    <Form.Group controlId="Deductions">
+                        <Form.Label>Deductions</Form.Label>
+                        <Form.Control type="number" name="Deductions" required 
+                        placeholder="Deductions"/>
+                    </Form.Group>
+
+                    <br></br>
 
                     <Form.Group>
                         <Button variant="primary" type="submit">

@@ -2,7 +2,7 @@ import './App.css';
 import {Department} from './Components/Department';
 import React, { useEffect, useState } from "react";
 import {Employee} from './Components/Employee';
-import {Home} from './Components/Home';
+import Home from './Components/Home';
 import {Login} from './Components/Login';
 import {Register} from './Components/Register';
 import Navigation from './Components/Navigation';

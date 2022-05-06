@@ -49,9 +49,15 @@ export class Employee extends Component{
                     <thead>
                         <tr>
                             <th>EmployeeId</th>
-                            <th>EmployeeName</th>
+                            <th>Name</th>
+                            <th>Lastname</th>
+                            <th>Position</th>
                             <th>Department</th>
                             <th>DOJ</th>
+                            <th>BaseSalary</th>
+                            <th>Increase</th>
+                            <th>GrossPrizes</th>
+                            <th>Deductions</th>
                             <th>Options</th>
                         </tr>
                     </thead>
@@ -59,14 +65,20 @@ export class Employee extends Component{
                         {emps.map(emp=>
                             <tr key={emp.EmployeeId}>
                                 <td>{emp.EmployeeId}</td>
-                                <td>{emp.EmployeeName}</td>
+                                <td>{emp.Name}</td>
+                                <td>{emp.Lastname}</td>
+                                <td>{emp.Position}</td>
                                 <td>{emp.Department}</td>
                                 <td>{emp.DateOfJoining}</td>
+                                <td>{emp.BaseSalary}</td>
+                                <td>{emp.Increase}</td>
+                                <td>{emp.GrossPrizes}</td>
+                                <td>{emp.Deductions}</td>
                                 <td>
 <ButtonToolbar>
     <Button className="mr-2" variant="info"
     onClick={()=>this.setState({editModalShow:true,
-        empid:emp.EmployeeId,empname:emp.EmployeeName,depmt:emp.Department,photofilename:emp.PhotoFileName,doj:emp.DateOfJoining})}>
+        empid:emp.EmployeeId,empname:emp.Name,depmt:emp.Department,photofilename:emp.PhotoFileName,doj:emp.DateOfJoining})}>
             Edit
         </Button>
 
