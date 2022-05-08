@@ -30,7 +30,7 @@ export class EditEmpModal extends Component{
             },
             body:JSON.stringify({
                 EmployeeId:event.target.EmployeeId.value,
-                Name:event.target.Name.value,
+                Firstname:event.target.Firstname.value,
                 Lastname:event.target.Lastname.value,
                 Position:event.target.Position.value,
                 Department:event.target.Department.value,
@@ -105,16 +105,18 @@ centered
                         defaultValue={this.props.empid}/>
                     </Form.Group>
 
-                    <Form.Group controlId="Name">
-                        <Form.Label>Name</Form.Label>
-                        <Form.Control type="text" name="Name" required 
-                        placeholder="Name"/>
+                    <Form.Group controlId="Firstname">
+                        <Form.Label>Firstname</Form.Label>
+                        <Form.Control type="text" name="Firstname" required 
+                        placeholder="Firstname"
+                        defaultValue={this.props.empfirstname}/>
                     </Form.Group>
 
                     <Form.Group controlId="Lastname">
                         <Form.Label>Lastname</Form.Label>
                         <Form.Control type="text" name="Lastname" required 
-                        placeholder="Lastname"/>
+                        placeholder="Lastname"
+                        defaultValue={this.props.emplastname}/>
                     </Form.Group>
 
                     <Form.Group controlId="Position">
@@ -145,25 +147,29 @@ centered
                     <Form.Group controlId="BaseSalary">
                         <Form.Label>BaseSalary</Form.Label>
                         <Form.Control type="number" name="BaseSalary" required 
-                        placeholder="BaseSalary"/>
+                        placeholder="BaseSalary"
+                        defaultValue={this.props.basesalary}/>
                     </Form.Group>
 
                     <Form.Group controlId="Increase">
                         <Form.Label>Increase</Form.Label>
                         <Form.Control type="number" name="Increase" required 
-                        placeholder="Increase"/>
+                        placeholder="Increase"
+                        defaultValue={this.props.increase}/>
                     </Form.Group>
 
                     <Form.Group controlId="GrossPrizes">
                         <Form.Label>Gross Prizes</Form.Label>
                         <Form.Control type="number" name="GrossPrizes" required 
-                        placeholder="GrossPrizes"/>
+                        placeholder="GrossPrizes"
+                        defaultValue={this.props.grossprizes}/>
                     </Form.Group>
 
                     <Form.Group controlId="Deductions">
                         <Form.Label>Deductions</Form.Label>
                         <Form.Control type="number" name="Deductions" required 
-                        placeholder="Deductions"/>
+                        placeholder="Deductions"
+                        defaultValue={this.props.deductions}/>
                     </Form.Group>
 
                     <br></br>

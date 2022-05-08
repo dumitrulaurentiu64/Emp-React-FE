@@ -19,10 +19,10 @@ export class AddEmpModal extends Component{
             this.setState({deps:data});
         });
     }
-
+    //Email
     handleSubmit(event){
         event.preventDefault();
-        fetch(process.env.REACT_APP_API+'employee',{
+        fetch(process.env.REACT_APP_API+'employee/'+event.target.Email.value,{
             method:'POST',
             headers:{
                 'Accept':'application/json',
@@ -30,7 +30,7 @@ export class AddEmpModal extends Component{
             },
             body:JSON.stringify({
                 EmployeeId:null,
-                Name:event.target.Name.value,
+                Firstname:event.target.Firstname.value,
                 Lastname:event.target.Lastname.value,
                 Position:event.target.Position.value,
                 Department:event.target.Department.value,
@@ -96,16 +96,22 @@ centered
         <Row>
             <Col sm={6}>
                 <Form onSubmit={this.handleSubmit}>
-                    <Form.Group controlId="Name">
-                        <Form.Label>Name</Form.Label>
-                        <Form.Control type="text" name="Name" required 
-                        placeholder="Name"/>
+                    <Form.Group controlId="Firstname">
+                        <Form.Label>Firstname</Form.Label>
+                        <Form.Control type="text" name="Firstname" required 
+                        placeholder="Firstname"/>
                     </Form.Group>
 
                     <Form.Group controlId="Lastname">
                         <Form.Label>Lastname</Form.Label>
                         <Form.Control type="text" name="Lastname" required 
                         placeholder="Lastname"/>
+                    </Form.Group>
+
+                    <Form.Group controlId="Email">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control type="text" name="Email" required 
+                        placeholder="Email"/>
                     </Form.Group>
 
                     <Form.Group controlId="Position">

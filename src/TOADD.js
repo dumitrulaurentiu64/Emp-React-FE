@@ -1,8 +1,6 @@
 
 
-// DO THE FLYERS                        NOT DONE
 
-// SEND EMAIL                        ALMOST DONE
 
 // MAKE THE APP FANCY                   NOT DONE
 
@@ -25,6 +23,10 @@
 // CAS
 // CASS
 // Net_Salary
+
+// DO THE FLYERS                            DONE
+
+// SEND EMAIL                               DONE
 
 // FINISH PROFILE SECTION                   DONE
 

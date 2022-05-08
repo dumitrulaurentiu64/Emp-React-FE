@@ -45,9 +45,10 @@ const Navigation = (props) => {
                 <div className="container-fluid">
                     <div>
                         { props.isLoggedIn && getRole() === 'admin' && <NavLink to="/" className="navbar-brand">Configuration</NavLink> }
-                        { props.isLoggedIn && getRole() === 'admin' && <NavLink to="/Department" className="navbar-brand">Departments</NavLink> }
-                        { props.isLoggedIn && getRole() === 'admin' && <NavLink to="/Employee" className="navbar-brand">Employees</NavLink> }
+                        { props.isLoggedIn && getRole() !== 'visitor' && <NavLink to="/Department" className="navbar-brand">Departments</NavLink> }
+                        { props.isLoggedIn && getRole() !== 'visitor' && <NavLink to="/Employee" className="navbar-brand">Employees</NavLink> }
                         { props.isLoggedIn && getRole() !== 'visitor' && <NavLink to="/Profile" className="navbar-brand">Profile</NavLink> }
+                        { props.isLoggedIn && getRole() !== 'visitor' && <NavLink to="/Flyer" className="navbar-brand">Flyer</NavLink> }
                     </div>
                     <div>
                         <Dropdown>

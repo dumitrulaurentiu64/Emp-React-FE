@@ -49,7 +49,7 @@ export class Department extends Component{
                         <tr>
                             <th>DepartmentId</th>
                             <th>DepartmentName</th>
-                            <th>Options</th>
+                            { this.props.user.User_Role === 'admin' && <th>Options</th> }
                         </tr>
                     </thead>
                     <tbody>
@@ -57,7 +57,7 @@ export class Department extends Component{
                             <tr key={dep.DepartmentId}>
                                 <td>{dep.DepartmentId}</td>
                                 <td>{dep.DepartmentName}</td>
-                                <td>
+                                { this.props.user.User_Role === 'admin' && <td>
 <ButtonToolbar>
     <Button className="mr-2" variant="info"
     onClick={()=>this.setState({editModalShow:true,
@@ -76,21 +76,21 @@ export class Department extends Component{
         depname={depname}/>
 </ButtonToolbar>
 
-                                </td>
+                                </td> }
 
                             </tr>)}
                     </tbody>
 
                 </Table>
 
-                <ButtonToolbar>
+                { this.props.user.User_Role === 'admin' && <ButtonToolbar>
                     <Button variant='primary'
                     onClick={()=>this.setState({addModalShow:true})}>
                     Add Department</Button>
 
                     <AddDepModal show={this.state.addModalShow}
                     onHide={addModalClose}/>
-                </ButtonToolbar>
+                </ButtonToolbar> }
             </div>
         )
     }

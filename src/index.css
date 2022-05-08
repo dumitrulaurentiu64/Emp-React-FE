@@ -100,3 +100,7 @@ select {
   margin-top: 0.5rem;
   color: #ff9900;
 }
+
+#flyer-content a {
+  background-color: saddlebrown;
+}

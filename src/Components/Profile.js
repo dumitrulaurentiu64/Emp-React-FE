@@ -28,10 +28,10 @@ export class Profile extends Component {
         <div className="container rounded bg-white mt-5 mb-5">
             <div className="row">
                 <div className="col-md-3 border-right">
-                    <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="rounded-circle mt-5" width="200px" 
-                    src={process.env.REACT_APP_PHOTOPATH+this.state.profile.PhotoFileName}></img>
+                    <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="rounded-circle mt-5" width="200px"
+                    src={process.env.REACT_APP_PHOTOPATH+this.state.profile.PhotoFileName} alt=""></img>
                     
-                    <span className="font-weight-bold" defaultValue={this.state.profile.Name}>{this.state.profile.Name}</span><span className="text-black-50" defaultValue={this.props.user.Email}>{this.props.user.Email}</span><span> </span></div>
+                    <span className="font-weight-bold" defaultValue={this.state.profile.Firstname}>{this.state.profile.Firstname}</span><span className="text-black-50" defaultValue={this.props.user.Email}>{this.props.user.Email}</span><span> </span></div>
                 </div>
                 <div className="col-md-5 border-right">
                     <div className="p-3 py-5">
@@ -39,7 +39,7 @@ export class Profile extends Component {
                             <h4 className="text-right">Profile Settings</h4>
                         </div>
                         <div className="row mt-2">
-                            <div className="col-md-6"><label className="labels">Name</label><input type="text" className="form-control" defaultValue={this.state.profile.Name} readOnly></input></div>
+                            <div className="col-md-6"><label className="labels">Firstname</label><input type="text" className="form-control" defaultValue={this.state.profile.Firstname} readOnly></input></div>
                             <div className="col-md-6"><label className="labels">Lastname</label><input type="text" className="form-control" defaultValue={this.state.profile.Lastname} readOnly></input></div>
                         </div>
                         <div className="row mt-3">

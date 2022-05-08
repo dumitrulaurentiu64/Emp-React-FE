@@ -40,7 +40,7 @@ export class Employee extends Component{
         this.refreshList();
     }
     render(){
-        const {emps, empid, empname, depmt, photofilename, doj}=this.state;
+        const {emps, empid, empfirstname, emplastname, empposition, depmt, photofilename, doj, basesalary, increase, grossprizes, deductions}=this.state;
         let addModalClose=()=>this.setState({addModalShow:false});
         let editModalClose=()=>this.setState({editModalShow:false});
         return(
@@ -48,37 +48,37 @@ export class Employee extends Component{
                 <Table className="mt-4 mx-4" striped bordered hover size ="sm">
                     <thead>
                         <tr>
-                            <th>EmployeeId</th>
-                            <th>Name</th>
+                            { this.props.user.User_Role === 'admin' && <th>EmployeeId</th> }
+                            <th>Firstname</th>
                             <th>Lastname</th>
                             <th>Position</th>
                             <th>Department</th>
                             <th>DOJ</th>
-                            <th>BaseSalary</th>
-                            <th>Increase</th>
-                            <th>GrossPrizes</th>
-                            <th>Deductions</th>
-                            <th>Options</th>
+                            { this.props.user.User_Role === 'admin' && <th>BaseSalary</th> }
+                           { this.props.user.User_Role === 'admin' && <th>Increase</th> }
+                           { this.props.user.User_Role === 'admin' && <th>GrossPrizes</th> }
+                           { this.props.user.User_Role === 'admin' && <th>Deductions</th> }
+                            { this.props.user.User_Role === 'admin' && <th>Options</th> }
                         </tr>
                     </thead>
                     <tbody>
                         {emps.map(emp=>
                             <tr key={emp.EmployeeId}>
-                                <td>{emp.EmployeeId}</td>
-                                <td>{emp.Name}</td>
+                                { this.props.user.User_Role === 'admin' && <td>{emp.EmployeeId}</td> }
+                                <td>{emp.Firstname}</td>
                                 <td>{emp.Lastname}</td>
                                 <td>{emp.Position}</td>
                                 <td>{emp.Department}</td>
                                 <td>{emp.DateOfJoining}</td>
-                                <td>{emp.BaseSalary}</td>
-                                <td>{emp.Increase}</td>
-                                <td>{emp.GrossPrizes}</td>
-                                <td>{emp.Deductions}</td>
-                                <td>
+                                { this.props.user.User_Role === 'admin' && <td>{emp.BaseSalary}</td> }
+                                { this.props.user.User_Role === 'admin' && <td>{emp.Increase}</td> }
+                                { this.props.user.User_Role === 'admin' && <td>{emp.GrossPrizes}</td> }
+                                { this.props.user.User_Role === 'admin' && <td>{emp.Deductions}</td> }
+                                { this.props.user.User_Role === 'admin' && <td>
 <ButtonToolbar>
     <Button className="mr-2" variant="info"
     onClick={()=>this.setState({editModalShow:true,
-        empid:emp.EmployeeId,empname:emp.Name,depmt:emp.Department,photofilename:emp.PhotoFileName,doj:emp.DateOfJoining})}>
+        empid:emp.EmployeeId,empfirstname:emp.Firstname,emplastname:emp.Lastname,empposition:emp.Position,depmt:emp.Department,photofilename:emp.PhotoFileName,doj:emp.DateOfJoining,basesalary:emp.BaseSalary, increase:emp.Increase, grossprizes:emp.GrossPrizes, deductions:emp.Deductions})}>
             Edit
         </Button>
 
@@ -90,29 +90,34 @@ export class Employee extends Component{
         <EditEmpModal show={this.state.editModalShow}
         onHide={editModalClose}
         empid={empid}
-        empname={empname}
+        empfirstname={empfirstname}
+        emplastname={emplastname}
+        empposition={empposition}
         depmt={depmt}
         photofilename={photofilename}
-        doj={doj}/>
+        doj={doj}
+        basesalary={basesalary}
+        increase={increase}
+        grossprizes={grossprizes}
+        deductions={deductions}/>
 </ButtonToolbar>
 
-                                </td>
+                                </td> }
 
                             </tr>)}
                     </tbody>
 
                 </Table>
 
-                <ButtonToolbar>
+                { this.props.user.User_Role === 'admin' && <ButtonToolbar>
                     <Button variant='primary'
                     onClick={()=>this.setState({addModalShow:true})}>
                     Add Employee</Button>
 
                     <AddEmpModal show={this.state.addModalShow}
                     onHide={addModalClose}/>
-                </ButtonToolbar>
+                </ButtonToolbar> }
             </div>
         )
     }
-    
 }
