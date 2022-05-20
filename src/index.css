@@ -19,13 +19,19 @@ code {
 
 /* ///////////////////// */
 
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
 .form-control:focus {
   box-shadow: none;
   border-color: #ba68c8;
 }
 
 .profile-button {
-  background: rgb(99, 39, 120);
+  background: #800020;
   box-shadow: none;
   border: none;
 }
@@ -101,6 +107,98 @@ select {
   color: #ff9900;
 }
 
+#configForm {
+  padding: 0% 15% 0% 15%;
+}
+
+#EmpTable {
+  border-color: black;
+}
+
+#DepTable {
+  border-color: black;
+}
+
 #flyer-content a {
-  background-color: saddlebrown;
+  background-color: #d3d3d3;
+  text-align: center;
+  color: black;
+  display: block;
+}
+
+#flyer-content .card-body {
+  background-color: #b24855;
+}
+
+#ProfileDiv input {
+  background-color: #e1e1e1;
+}
+
+.navbar-brand:not(#exceptionlink) {
+  color: #d8d8d8;
+}
+
+.navbar-brand:not(#exceptionlink):hover {
+  color: white;
+}
+
+#flyer-content {
+  margin: 5% 0% 0% 17%;
+}
+
+#login {
+  margin: 0% 30% 0% 30%;
+}
+
+#login button {
+  width: 100%;
+}
+
+#initialConfig {
+  margin: 0% 20% 0% 20%;
+}
+
+#login .text-muted {
+  text-align: center;
+}
+
+#login h1 {
+  text-align: center;
+}
+
+#initialConfig .text-muted {
+  text-align: center;
+}
+
+#initialConfig h1 {
+  text-align: center;
+}
+
+#EmpAdd button {
+  margin: 0% 0% 0% 1.5%;
+}
+
+#EmpOptions button {
+  margin: 0% 0% 0% 15%;
+}
+
+#EmpDiv {
+  margin: 4% 10% 0% 7%;
+}
+
+#DepAdd button {
+  margin: 0% 0% 0% 1.5%;
+}
+
+#DepOptions button {
+  margin: 0% 0% 0% 25%;
+}
+
+#DepDiv {
+  margin: 4% 10% 0% 7%;
+}
+
+body {
+  background-image: url("Images/AppBackgroundNice.png");
+  background-size: cover;
 }

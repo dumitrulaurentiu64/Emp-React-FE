@@ -44,8 +44,8 @@ export class Employee extends Component{
         let addModalClose=()=>this.setState({addModalShow:false});
         let editModalClose=()=>this.setState({editModalShow:false});
         return(
-            <div >
-                <Table className="mt-4 mx-4" striped bordered hover size ="sm">
+            <div id="EmpDiv" >
+                <Table className="mt-4 mx-4" striped bordered hover size ="sm" id="EmpTable">
                     <thead>
                         <tr>
                             { this.props.user.User_Role === 'admin' && <th>EmployeeId</th> }
@@ -75,10 +75,10 @@ export class Employee extends Component{
                                 { this.props.user.User_Role === 'admin' && <td>{emp.GrossPrizes}</td> }
                                 { this.props.user.User_Role === 'admin' && <td>{emp.Deductions}</td> }
                                 { this.props.user.User_Role === 'admin' && <td>
-<ButtonToolbar>
-    <Button className="mr-2" variant="info"
+<ButtonToolbar id="EmpOptions">
+    <Button className="mr-2" variant="secondary"
     onClick={()=>this.setState({editModalShow:true,
-        empid:emp.EmployeeId,empfirstname:emp.Firstname,emplastname:emp.Lastname,empposition:emp.Position,depmt:emp.Department,photofilename:emp.PhotoFileName,doj:emp.DateOfJoining,basesalary:emp.BaseSalary, increase:emp.Increase, grossprizes:emp.GrossPrizes, deductions:emp.Deductions})}>
+        empid:emp.EmployeeId,empfirstname:emp.Firstname,emplastname:emp.Lastname, empposition:emp.Position,depmt:emp.Department,photofilename:emp.PhotoFileName,doj:emp.DateOfJoining,basesalary:emp.BaseSalary, increase:emp.Increase, grossprizes:emp.GrossPrizes, deductions:emp.Deductions})}>
             Edit
         </Button>
 
@@ -109,13 +109,13 @@ export class Employee extends Component{
 
                 </Table>
 
-                { this.props.user.User_Role === 'admin' && <ButtonToolbar>
-                    <Button variant='primary'
+                { this.props.user.User_Role === 'admin' && <ButtonToolbar id="EmpAdd" >
+                    <Button variant='dark'
                     onClick={()=>this.setState({addModalShow:true})}>
                     Add Employee</Button>
 
                     <AddEmpModal show={this.state.addModalShow}
-                    onHide={addModalClose}/>
+                    onHide={addModalClose} />
                 </ButtonToolbar> }
             </div>
         )

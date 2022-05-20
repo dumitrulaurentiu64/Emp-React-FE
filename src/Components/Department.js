@@ -43,8 +43,8 @@ export class Department extends Component{
         let addModalClose=()=>this.setState({addModalShow:false});
         let editModalClose=()=>this.setState({editModalShow:false});
         return(
-            <div >
-                <Table className="mt-4 mx-4" striped bordered hover size ="sm">
+            <div id="DepDiv">
+                <Table className="mt-4 mx-4" striped bordered hover size ="sm" id="DepTable">
                     <thead>
                         <tr>
                             <th>DepartmentId</th>
@@ -58,8 +58,8 @@ export class Department extends Component{
                                 <td>{dep.DepartmentId}</td>
                                 <td>{dep.DepartmentName}</td>
                                 { this.props.user.User_Role === 'admin' && <td>
-<ButtonToolbar>
-    <Button className="mr-2" variant="info"
+<ButtonToolbar id="DepOptions">
+    <Button className="mr-2" variant="secondary"
     onClick={()=>this.setState({editModalShow:true,
         depid:dep.DepartmentId,depname:dep.DepartmentName})}>
             Edit
@@ -83,8 +83,8 @@ export class Department extends Component{
 
                 </Table>
 
-                { this.props.user.User_Role === 'admin' && <ButtonToolbar>
-                    <Button variant='primary'
+                { this.props.user.User_Role === 'admin' && <ButtonToolbar id="DepAdd">
+                    <Button variant='dark'
                     onClick={()=>this.setState({addModalShow:true})}>
                     Add Department</Button>
 

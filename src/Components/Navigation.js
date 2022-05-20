@@ -1,8 +1,12 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+
 import Dropdown from 'react-bootstrap/Dropdown';
 
 const Navigation = (props) => {
+
+    const VISITOR = 'visitor';
+    const ADMIN = 'admin';
 
 
     const logout = async () => {
@@ -19,36 +23,33 @@ const Navigation = (props) => {
     }
 
     let menu;
-
     if (props.isLoggedIn)
     {
         menu = (
-            <NavLink to='/Login' onClick={logout} className="nav-link" >
-                <Dropdown.Item href="/Login">Logout</Dropdown.Item>
+            <NavLink to='/' onClick={logout} className="nav-link" >
+                <Dropdown.Item href="/">Logout</Dropdown.Item>
             </NavLink>
         );
     }  else {
         menu = (
-            <NavLink to="/Login" className="nav-link" >
-                <Dropdown.Item href="/Login">Login</Dropdown.Item>
+            <NavLink to="/" className="nav-link" >
+                <Dropdown.Item href="/">Login</Dropdown.Item>
             </NavLink>
         );
     }
-
-    console.log(props.user.User_Role + " AAAAAAAAAAAAAAAAAAAAAAAAAA");
-    console.log(props.isLoggedIn + " BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
-    console.log("rerender  " + props.isLoggedIn + "  " + getRole());
 
     return (
         <div>
             <nav className="navbar navbar-expand-md navbar-dark bg-dark mb-4">
                 <div className="container-fluid">
                     <div>
-                        { props.isLoggedIn && getRole() === 'admin' && <NavLink to="/" className="navbar-brand">Configuration</NavLink> }
-                        { props.isLoggedIn && getRole() !== 'visitor' && <NavLink to="/Department" className="navbar-brand">Departments</NavLink> }
-                        { props.isLoggedIn && getRole() !== 'visitor' && <NavLink to="/Employee" className="navbar-brand">Employees</NavLink> }
-                        { props.isLoggedIn && getRole() !== 'visitor' && <NavLink to="/Profile" className="navbar-brand">Profile</NavLink> }
-                        { props.isLoggedIn && getRole() !== 'visitor' && <NavLink to="/Flyer" className="navbar-brand">Flyer</NavLink> }
+                        { props.isLoggedIn && getRole() !== VISITOR && 
+                            <NavLink id="exceptionlink" to="/Profile" className="navbar-brand">Welcome {props.user.Name}!</NavLink> }
+                        { props.isLoggedIn && getRole() === ADMIN && 
+                            <NavLink  to="/config" className="navbar-brand">Configuration</NavLink> }
+                        { props.isLoggedIn && getRole() !== VISITOR && <NavLink to="/Department" className="navbar-brand">Departments</NavLink> }
+                        { props.isLoggedIn && getRole() !== VISITOR && <NavLink to="/Employee" className="navbar-brand">Employees</NavLink> }
+                        { props.isLoggedIn && getRole() !== VISITOR && <NavLink to="/Flyer" className="navbar-brand">Flyer</NavLink> }
                     </div>
                     <div>
                         <Dropdown>
@@ -63,11 +64,6 @@ const Navigation = (props) => {
                                 </NavLink>
                                 }
                                 {menu}
-                                {props.user.User_Role === 'visitor' && 
-                                <NavLink to="/Register" className="nav-link" >
-                                <Dropdown.Item href="/Register">Register</Dropdown.Item>
-                                </NavLink>
-                                }
 
                             </Dropdown.Menu>
                         </Dropdown>

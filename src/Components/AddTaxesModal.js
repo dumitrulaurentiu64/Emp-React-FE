@@ -1,37 +1,35 @@
 import React,{Component} from 'react';
 import {Modal,Button, Row, Col, Form} from 'react-bootstrap';
 
-export class ChangePassModal extends Component{
+export class AddTaxesModal extends Component{
     constructor(props){
-        super(props); 
+        super(props);
         this.handleSubmit=this.handleSubmit.bind(this);
     }
 
     handleSubmit(event){
         event.preventDefault();
-        fetch(process.env.REACT_APP_API+'auth/changepass',{
-            method:'PUT',
+        fetch(process.env.REACT_APP_API+'config',{
+            method:'POST',
             headers:{
                 'Accept':'application/json',
                 'Content-Type':'application/json'
             },
             body:JSON.stringify({
-                Email:this.props.email,
-                OldPassword:event.target.oldPassword.value,
-                NewPassword:event.target.newPassword.value
+                Tax:event.target.Tax.value,
+                CAS:event.target.CAS.value,
+                CASS:event.target.CASS.value,
+                Pass:event.target.Password.value
             })
-
         })
         .then(res=>res.json())
         .then((result)=>{
-            alert("Password change successful!")
-            this.props.onHide();
+            alert('Tax configuration was succesful!');
         },
         (error)=>{
-            alert("Password change failed!")
+            alert('Tax configuration failed!');
         })
-    } 
-
+    }
     render(){
         return (
             <div className="container">
@@ -44,7 +42,7 @@ centered
 >
     <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-            Change Password
+            Setup Taxes
         </Modal.Title>
     </Modal.Header>
     <Modal.Body>
@@ -52,41 +50,37 @@ centered
         <Row>
             <Col sm={6}>
                 <Form onSubmit={this.handleSubmit}>
-                    <Form.Group controlId="oldPassword">
-                        <Form.Label>Old Password</Form.Label>
-                        <Form.Control
-                        type="password"
-                        name="oldPassword"
-                        required
+                <Form.Group controlId="Tax">
+                        <Form.Label>Tax %</Form.Label>
+                        <Form.Control type="number" name="Tax" min="1" max="99" required 
                         placeholder="..."/>
                     </Form.Group>
 
-                    <Form.Group controlId="newPassword">
-                        <Form.Label>New Password</Form.Label>
-                        <Form.Control
-                        type="password"
-                        name="newPassword"
-                        required
+                    <Form.Group controlId="CAS">
+                        <Form.Label>CAS %</Form.Label>
+                        <Form.Control type="number" name="CAS" min="1" max="99"required 
                         placeholder="..."/>
                     </Form.Group>
 
-                    <Form.Group controlId="repNewPassword">
-                        <Form.Label>Repeat New Password</Form.Label>
-                        <Form.Control
-                        type="password"
-                        name="repNewPassword"
-                        required
+                    <Form.Group controlId="CASS">
+                        <Form.Label>CASS %</Form.Label>
+                        <Form.Control type="number" name="CASS" min="1" max="99" required 
+                        placeholder="..."/>
+                    </Form.Group>
+
+                    <Form.Group controlId="Position">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" name="Password" required 
                         placeholder="..."/>
                     </Form.Group>
                     <br />
                     <Form.Group>
                         <Button variant="dark" type="submit">
-                            Change Password
+                            Insert Configuration
                         </Button>
                     </Form.Group>
                 </Form>
             </Col>
-
         </Row>
     </Modal.Body>
     

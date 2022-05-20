@@ -25,13 +25,13 @@ export class Profile extends Component {
         let changePassModalClose=()=>this.setState({changePassModalShow:false});
 
         return (
-        <div className="container rounded bg-white mt-5 mb-5">
+        <div className="container rounded mt-5 mb-5" id="ProfileDiv">
             <div className="row">
                 <div className="col-md-3 border-right">
                     <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="rounded-circle mt-5" width="200px"
                     src={process.env.REACT_APP_PHOTOPATH+this.state.profile.PhotoFileName} alt=""></img>
                     
-                    <span className="font-weight-bold" defaultValue={this.state.profile.Firstname}>{this.state.profile.Firstname}</span><span className="text-black-50" defaultValue={this.props.user.Email}>{this.props.user.Email}</span><span> </span></div>
+                    <span className="font-weight-bold" defaultValue={this.state.profile.Firstname}><strong>{this.state.profile.Firstname}</strong></span><span className="font-weight-bold" defaultValue={this.props.user.Email}><strong>{this.props.user.Email}</strong></span><span> </span></div>
                 </div>
                 <div className="col-md-5 border-right">
                     <div className="p-3 py-5">
@@ -54,8 +54,9 @@ export class Profile extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-3">
                     <div className="p-3 py-5">
+                        <br />
                         <div className="mt-5 text-center"><button className="btn btn-primary profile-button" onClick={()=>this.setState({changePassModalShow:true})} type="button">Change Password</button>
                             <ChangePassModal email={this.props.user.Email} show={this.state.changePassModalShow} onHide={changePassModalClose}/>
                         </div>

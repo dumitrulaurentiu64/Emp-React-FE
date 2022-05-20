@@ -58,7 +58,7 @@ centered
 
                     <Form.Group controlId="DepartmentName">
                         <Form.Label>DepartmentName</Form.Label>
-                        <Form.Control type="text" name="DepartmentName" required 
+                        <Form.Control type="text" name="DepartmentName" required className="form-control form-control-sm"
                         defaultValue={this.props.depname}
                         placeholder="DepartmentName"/>
                     </Form.Group>

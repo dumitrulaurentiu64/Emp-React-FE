@@ -10,7 +10,8 @@ export class EditEmpModal extends Component{
     }
 
     photofilename = "anonymous.png";
-    imagesrc = process.env.REACT_APP_PHOTOPATH + this.photofilename;
+    
+    imagesrc = process.env.REACT_APP_PHOTOPATH+this.photofilename;
 
     componentDidMount(){
         fetch(process.env.REACT_APP_API+'department')
@@ -22,7 +23,7 @@ export class EditEmpModal extends Component{
 
     handleSubmit(event){
         event.preventDefault();
-        fetch(process.env.REACT_APP_API+'employee',{
+        fetch(process.env.REACT_APP_API+'employee/'+event.target.UserRole.value,{
             method:'PUT',
             headers:{
                 'Accept':'application/json',
@@ -40,7 +41,6 @@ export class EditEmpModal extends Component{
                 Increase:event.target.Increase.value,
                 GrossPrizes:event.target.GrossPrizes.value,
                 Deductions:event.target.Deductions.value
-
             })
         })
         .then(res=>res.json())
@@ -69,7 +69,9 @@ export class EditEmpModal extends Component{
         })
         .then(res=>res.json())
         .then((result)=>{
+            console.log('SET NEW IMAGESRC');
             this.imagesrc=process.env.REACT_APP_PHOTOPATH+result;
+            document.getElementById("img").src = this.imagesrc;
         },
         (error)=>{
             alert('Failed');
@@ -93,11 +95,10 @@ centered
         </Modal.Title>
     </Modal.Header>
     <Modal.Body>
-
-        <Row>
-            <Col sm={6}>
-                <Form onSubmit={this.handleSubmit}>
-                <Form.Group controlId="EmployeeId">
+        <Form onSubmit={this.handleSubmit}>    
+            <Row>
+                <Col sm={6}>
+                    <Form.Group controlId="EmployeeId">
                         <Form.Label>EmployeeId</Form.Label>
                         <Form.Control type="text" name="EmployeeId" required 
                         placeholder="EmployeeId"
@@ -122,7 +123,8 @@ centered
                     <Form.Group controlId="Position">
                         <Form.Label>Position</Form.Label>
                         <Form.Control type="text" name="Position" required 
-                        placeholder="Position"/>
+                        placeholder="Position"
+                        defaultValue={this.props.empposition}/>
                     </Form.Group>
 
                     <Form.Group controlId="Department">
@@ -179,15 +181,22 @@ centered
                             Update Employee
                         </Button>
                     </Form.Group>
-                </Form>
-            </Col>
+                    
+                </Col>
 
-            <Col sm={6}>
-                <Image width="200px" height="200px" 
-                src={process.env.REACT_APP_PHOTOPATH+this.props.photofilename}/>
-                <input onChange={this.handleFileSelected} type="File"/>
-            </Col>
-        </Row>
+                <Col sm={6}>
+                    <Image width="220px" height="220px" 
+                    src={process.env.REACT_APP_PHOTOPATH+this.props.photofilename} id="img"/>
+                    <input onChange={this.handleFileSelected} type="File"/>
+                    <br /> <br />
+                    <Form.Label>User Role</Form.Label>
+                    <Form.Control as="select" name="UserRole" required defaultValue='admin' className="form-control form-control-sm">
+                        <option>admin</option>
+                        <option>employee</option>
+                    </Form.Control>
+                </Col>
+            </Row>
+        </Form>
     </Modal.Body>
     
     <Modal.Footer>
