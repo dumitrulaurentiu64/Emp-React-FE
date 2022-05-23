@@ -43,7 +43,7 @@ function App(props) {
   return (
     <div>
       <BrowserRouter>
-        <div className="container">
+        <div className="container" id="AppTitle">
         <h3 className ="m-3 d-flex justify-content-center">
           Salary Application
         </h3>

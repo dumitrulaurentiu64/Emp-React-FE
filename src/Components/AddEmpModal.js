@@ -9,7 +9,7 @@ export class AddEmpModal extends Component{
         this.handleFileSelected=this.handleFileSelected.bind(this);
     }
 
-    photofilename = "anonymous.png"
+    photofilename = "anonymous.png";
     imagesrc = process.env.REACT_APP_PHOTOPATH+this.photofilename;
 
     componentDidMount(){
@@ -45,6 +45,9 @@ export class AddEmpModal extends Component{
         .then(res=>res.json())
         .then((result)=>{
             alert("Employee was added succesfuly!");
+            this.imagesrc=process.env.REACT_APP_PHOTOPATH+'anonymous.png';
+            document.getElementById("img").src = this.imagesrc;
+            this.props.onHide();
         },
         (error)=>{
             alert('Employee insertion failed!');
@@ -67,7 +70,6 @@ export class AddEmpModal extends Component{
         })
         .then(res=>res.json())
         .then((result)=>{
-            console.log('SET NEW IMAGESRC');
             this.imagesrc=process.env.REACT_APP_PHOTOPATH+result;
             document.getElementById("img").src = this.imagesrc;
         },
@@ -75,8 +77,6 @@ export class AddEmpModal extends Component{
             alert('Failed');
         })
     }
-
-
 
     render(){
         return (

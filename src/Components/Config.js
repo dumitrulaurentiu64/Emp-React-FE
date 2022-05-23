@@ -15,7 +15,6 @@ const Config = (props) => {
         })
         .then(response=>response.json())
         .then(data=>{
-            console.log(data);
             setTaxes(data);
         });
     }, [])
@@ -45,9 +44,6 @@ const Config = (props) => {
     }
 
     function handleClick(event) {
-        console.log("Match started");
-        console.log(taxes.Pass);
-        console.log(passInput.current.value);
         if (taxes.Pass === passInput.current.value && showSubmit === false)
         {
             setShowSubmit(prev => !prev);
@@ -62,7 +58,7 @@ const Config = (props) => {
             <br />  <br /> <br />
             <Div id="configForm">
             <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Group className="mb-3" controlId="formBasicTax">
                     <Form.Text className="text-muted">
                         We'll never share your email with anyone else.
                     </Form.Text>
@@ -71,13 +67,13 @@ const Config = (props) => {
                     <Form.Control type="number" name="Tax" min="1" max="99" defaultValue={taxes.Tax} required/>
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
+                <Form.Group className="mb-3" controlId="formBasicCAS">
+                    <Form.Label>CAS</Form.Label>
                     <Form.Control type="number" name="CAS" min="1" max="99" defaultValue={taxes.CAS} required/>
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
+                <Form.Group className="mb-3" controlId="formBasicCASS">
+                    <Form.Label>CASS</Form.Label>
                     <Form.Control type="number" name="CASS" min="1" max="99" defaultValue={taxes.CASS} required/>
                 </Form.Group>
                 { showSubmit ? <Button variant="primary" type="submit">

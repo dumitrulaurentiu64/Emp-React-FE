@@ -42,7 +42,7 @@ export class Login extends Component {
             this.props.user.Id = content.Id;
             this.props.user.User_Role = content.User_Role;
             this.props.user.Email = content.Email;
-            this.props.user.Firstname = content.Name;
+            this.props.user.Name = content.Firstname;
             this.props.setLoggingState(true);
             
         }
