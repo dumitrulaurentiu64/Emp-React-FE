@@ -33,7 +33,7 @@ export class AddEmpModal extends Component{
                 Firstname:event.target.Firstname.value,
                 Lastname:event.target.Lastname.value,
                 Position:event.target.Position.value,
-                Department:event.target.Department.value,
+                DepartmentId:event.target.DepartmentId.value,
                 DateOfJoining:event.target.DateOfJoining.value,
                 PhotoFileName:this.photofilename,
                 BaseSalary:event.target.BaseSalary.value,
@@ -98,24 +98,24 @@ centered
         <Row>
             <Col sm={6}>
                 <Form.Group controlId="Firstname">
-                    <Form.Label>Firstname</Form.Label>
+                    <Form.Label>Prenume</Form.Label>
                     <Form.Control type="text" name="Firstname" required 
                     placeholder="Firstname"/>
                 </Form.Group>
 
                 <Form.Group controlId="Lastname">
-                    <Form.Label>Lastname</Form.Label>
+                    <Form.Label>Nume</Form.Label>
                     <Form.Control type="text" name="Lastname" required 
                     placeholder="Lastname"/>
                 </Form.Group>
 
                 <Form.Group controlId="Position">
-                    <Form.Label>Position</Form.Label>
+                    <Form.Label>Funcție</Form.Label>
                     <Form.Control type="text" name="Position" required 
                     placeholder="Position"/>
                 </Form.Group>
 
-                <Form.Group controlId="Department">
+                <Form.Group controlId="DepartmentId">
                     <Form.Label>Department</Form.Label>
                     <Form.Control as="select" className="form-control form-control-sm">
                         {this.state.deps.map(dep=>
@@ -124,7 +124,7 @@ centered
                 </Form.Group>
 
                 <Form.Group controlId="DateOfJoining">
-                    <Form.Label>DateOfJoining</Form.Label>
+                    <Form.Label>Data Aderării</Form.Label>
                     <Form.Control
                     type="date"
                     name="DateOfJoining"
@@ -133,25 +133,25 @@ centered
                 </Form.Group>
 
                 <Form.Group controlId="BaseSalary">
-                    <Form.Label>BaseSalary</Form.Label>
+                    <Form.Label>Salar Bază</Form.Label>
                     <Form.Control type="number" name="BaseSalary" required 
                     placeholder="BaseSalary"/>
                 </Form.Group>
 
                 <Form.Group controlId="Increase">
-                    <Form.Label>Increase</Form.Label>
+                    <Form.Label>Spor</Form.Label>
                     <Form.Control type="number" name="Increase" required 
                     placeholder="Increase"/>
                 </Form.Group>
 
                 <Form.Group controlId="GrossPrizes">
-                    <Form.Label>GrossPrizes</Form.Label>
+                    <Form.Label>Premii Brute</Form.Label>
                     <Form.Control type="number" name="GrossPrizes" required 
                     placeholder="GrossPrizes"/>
                 </Form.Group>
 
                 <Form.Group controlId="Deductions">
-                    <Form.Label>Deductions</Form.Label>
+                    <Form.Label>Rețineri</Form.Label>
                     <Form.Control type="number" name="Deductions" required 
                     placeholder="Deductions"/>
                 </Form.Group>
@@ -160,7 +160,7 @@ centered
 
                 <Form.Group>
                     <Button variant="dark" type="submit">
-                        Add Employee
+                        Adaugă Angajat
                     </Button>
             </Form.Group>
                 
@@ -179,10 +179,10 @@ centered
                     placeholder="Email"/>
                 </Form.Group>
                 <Form.Group controlId="UserRole">
-                    <Form.Label>User Role</Form.Label>
+                    <Form.Label>Rol Utilizator</Form.Label>
                     <Form.Control as="select" name="UserRole" required defaultValue='admin' className="form-control form-control-sm">
-                        <option>admin</option>
-                        <option>employee</option>
+                        <option>administrator</option>
+                        <option>angajat</option>
                     </Form.Control>
                 </Form.Group>                 
             </Col>
@@ -192,7 +192,7 @@ centered
     </Modal.Body>
     
     <Modal.Footer>
-        <Button variant="danger" onClick={this.props.onHide}>Close</Button>
+        <Button variant="danger" onClick={this.props.onHide}>Închide</Button>
     </Modal.Footer>
 
 </Modal>

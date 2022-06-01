@@ -34,7 +34,7 @@ export class EditEmpModal extends Component{
                 Firstname:event.target.Firstname.value,
                 Lastname:event.target.Lastname.value,
                 Position:event.target.Position.value,
-                Department:event.target.Department.value,
+                DepartmentId:event.target.DepartmentId.value,
                 DateOfJoining:event.target.DateOfJoining.value,
                 PhotoFileName:this.photofilename,
                 BaseSalary:event.target.BaseSalary.value,
@@ -48,7 +48,7 @@ export class EditEmpModal extends Component{
             alert(result);
         },
         (error)=>{
-            alert('Failed');
+            alert('Operațiunea nu a avut loc cu success.');
         })
     }
 
@@ -69,12 +69,11 @@ export class EditEmpModal extends Component{
         })
         .then(res=>res.json())
         .then((result)=>{
-            console.log('SET NEW IMAGESRC');
             this.imagesrc=process.env.REACT_APP_PHOTOPATH+result;
             document.getElementById("img").src = this.imagesrc;
         },
         (error)=>{
-            alert('Failed');
+            alert('Operațiunea nu a avut loc cu success.');
         })
         
     }
@@ -91,7 +90,7 @@ centered
 >
     <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-            Edit Employee
+            Modifică Angajat
         </Modal.Title>
     </Modal.Header>
     <Modal.Body>
@@ -99,7 +98,7 @@ centered
             <Row>
                 <Col sm={6}>
                     <Form.Group controlId="EmployeeId">
-                        <Form.Label>EmployeeId</Form.Label>
+                        <Form.Label>Cod Angajat</Form.Label>
                         <Form.Control type="text" name="EmployeeId" required 
                         placeholder="EmployeeId"
                         disabled
@@ -107,28 +106,28 @@ centered
                     </Form.Group>
 
                     <Form.Group controlId="Firstname">
-                        <Form.Label>Firstname</Form.Label>
+                        <Form.Label>Prenume</Form.Label>
                         <Form.Control type="text" name="Firstname" required 
                         placeholder="Firstname"
                         defaultValue={this.props.empfirstname}/>
                     </Form.Group>
 
                     <Form.Group controlId="Lastname">
-                        <Form.Label>Lastname</Form.Label>
+                        <Form.Label>Nume</Form.Label>
                         <Form.Control type="text" name="Lastname" required 
                         placeholder="Lastname"
                         defaultValue={this.props.emplastname}/>
                     </Form.Group>
 
                     <Form.Group controlId="Position">
-                        <Form.Label>Position</Form.Label>
+                        <Form.Label>Funcție</Form.Label>
                         <Form.Control type="text" name="Position" required 
                         placeholder="Position"
                         defaultValue={this.props.empposition}/>
                     </Form.Group>
 
-                    <Form.Group controlId="Department">
-                        <Form.Label>Department</Form.Label>
+                    <Form.Group controlId="DepartmentId">
+                        <Form.Label>Departament</Form.Label>
                         <Form.Control as="select" defaultValue={this.props.depmt}>
                         {this.state.deps.map(dep=>
                             <option key={dep.DepartmentId}>{dep.DepartmentName}</option>)}
@@ -136,7 +135,7 @@ centered
                     </Form.Group>
 
                     <Form.Group controlId="DateOfJoining">
-                        <Form.Label>DateOfJoining</Form.Label>
+                        <Form.Label>Data Aderării</Form.Label>
                         <Form.Control 
                         type="date"
                         name="DateOfJoining"
@@ -147,28 +146,28 @@ centered
                     </Form.Group>
 
                     <Form.Group controlId="BaseSalary">
-                        <Form.Label>BaseSalary</Form.Label>
+                        <Form.Label>Salar Bază</Form.Label>
                         <Form.Control type="number" name="BaseSalary" required 
                         placeholder="BaseSalary"
                         defaultValue={this.props.basesalary}/>
                     </Form.Group>
 
                     <Form.Group controlId="Increase">
-                        <Form.Label>Increase</Form.Label>
+                        <Form.Label>Spor</Form.Label>
                         <Form.Control type="number" name="Increase" required 
                         placeholder="Increase"
                         defaultValue={this.props.increase}/>
                     </Form.Group>
 
                     <Form.Group controlId="GrossPrizes">
-                        <Form.Label>Gross Prizes</Form.Label>
+                        <Form.Label>Premii Brute</Form.Label>
                         <Form.Control type="number" name="GrossPrizes" required 
                         placeholder="GrossPrizes"
                         defaultValue={this.props.grossprizes}/>
                     </Form.Group>
 
                     <Form.Group controlId="Deductions">
-                        <Form.Label>Deductions</Form.Label>
+                        <Form.Label>Rețineri</Form.Label>
                         <Form.Control type="number" name="Deductions" required 
                         placeholder="Deductions"
                         defaultValue={this.props.deductions}/>
@@ -178,7 +177,7 @@ centered
 
                     <Form.Group>
                         <Button variant="primary" type="submit">
-                            Update Employee
+                            Actualizează Angajat
                         </Button>
                     </Form.Group>
                     
@@ -189,10 +188,10 @@ centered
                     src={process.env.REACT_APP_PHOTOPATH+this.props.photofilename} id="img"/>
                     <input onChange={this.handleFileSelected} type="File"/>
                     <br /> <br />
-                    <Form.Label>User Role</Form.Label>
+                    <Form.Label>Rol Utilizator</Form.Label>
                     <Form.Control as="select" name="UserRole" required defaultValue='admin' className="form-control form-control-sm">
-                        <option>admin</option>
-                        <option>employee</option>
+                        <option>administrator</option>
+                        <option>angajat</option>
                     </Form.Control>
                 </Col>
             </Row>
@@ -200,7 +199,7 @@ centered
     </Modal.Body>
     
     <Modal.Footer>
-        <Button variant="danger" onClick={this.props.onHide}>Close</Button>
+        <Button variant="danger" onClick={this.props.onHide}>Închide</Button>
     </Modal.Footer>
 
 </Modal>

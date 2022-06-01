@@ -16,8 +16,6 @@ const Footer = () => {
                 <div className="item1">
                     <PrivacyModal />
                 </div>
-                {/* <img className="img-rounded mt-5"  width="40px" height="40px"
-                                src={process.env.REACT_APP_PHOTOPATH+'dota2icon.png'} ></img> */}
                 <div className="item2">
                     { <img className="FooterImage" width="40px" height="40px" src={process.env.REACT_APP_PHOTOPATH+'dota2icon.png'} ></img> }
                     <span style={{ paddingRight: 5 }}>Copyright </span>

@@ -30,7 +30,7 @@ export class Employee extends Component{
     }
 
     deleteEmp(empid){
-        if(window.confirm('Are you sure?')){
+        if(window.confirm('Ești sigur că vrei să ștergi acest angajat?')){
             fetch(process.env.REACT_APP_API+'employee/'+empid,{
                 method:'DELETE',
                 header:{'Accept':'application/json',
@@ -48,43 +48,43 @@ export class Employee extends Component{
                 <Table className="mt-4 mx-4" striped bordered hover size ="sm" id="EmpTable">
                     <thead>
                         <tr>
-                            { this.props.user.User_Role === 'admin' && <th>EmployeeId</th> }
-                            <th>Firstname</th>
-                            <th>Lastname</th>
-                            <th>Position</th>
-                            <th>Department</th>
-                            <th>DOJ</th>
-                            { this.props.user.User_Role === 'admin' && <th>BaseSalary</th> }
-                           { this.props.user.User_Role === 'admin' && <th>Increase</th> }
-                           { this.props.user.User_Role === 'admin' && <th>GrossPrizes</th> }
-                           { this.props.user.User_Role === 'admin' && <th>Deductions</th> }
-                            { this.props.user.User_Role === 'admin' && <th>Options</th> }
+                            { this.props.user.UserRole === 'admin' && <th>Cod Angajat</th> }
+                            <th>Prenume</th>
+                            <th>Nume</th>
+                            <th>Funcție</th>
+                            <th>Departament</th>
+                            <th>Data Aderării</th>
+                            { this.props.user.UserRole === 'admin' && <th>Salar Bază</th> }
+                           { this.props.user.UserRole === 'admin' && <th>Spor</th> }
+                           { this.props.user.UserRole === 'admin' && <th>Premii Brute</th> }
+                           { this.props.user.UserRole === 'admin' && <th>Rețineri</th> }
+                            { this.props.user.UserRole === 'admin' && <th>Opțiuni</th> }
                         </tr>
                     </thead>
                     <tbody>
                         {emps.map(emp=>
                             <tr key={emp.EmployeeId}>
-                                { this.props.user.User_Role === 'admin' && <td>{emp.EmployeeId}</td> }
+                                { this.props.user.UserRole === 'admin' && <td>{emp.EmployeeId}</td> }
                                 <td>{emp.Firstname}</td>
                                 <td>{emp.Lastname}</td>
                                 <td>{emp.Position}</td>
-                                <td>{emp.Department}</td>
+                                <td>{emp.DepartmentId}</td>
                                 <td>{emp.DateOfJoining}</td>
-                                { this.props.user.User_Role === 'admin' && <td>{emp.BaseSalary}</td> }
-                                { this.props.user.User_Role === 'admin' && <td>{emp.Increase}</td> }
-                                { this.props.user.User_Role === 'admin' && <td>{emp.GrossPrizes}</td> }
-                                { this.props.user.User_Role === 'admin' && <td>{emp.Deductions}</td> }
-                                { this.props.user.User_Role === 'admin' && <td>
+                                { this.props.user.UserRole === 'admin' && <td>{emp.BaseSalary}</td> }
+                                { this.props.user.UserRole === 'admin' && <td>{emp.Increase}</td> }
+                                { this.props.user.UserRole === 'admin' && <td>{emp.GrossPrizes}</td> }
+                                { this.props.user.UserRole === 'admin' && <td>{emp.Deductions}</td> }
+                                { this.props.user.UserRole === 'admin' && <td>
 <ButtonToolbar id="EmpOptions">
     <Button className="mr-2" variant="secondary"
     onClick={()=>this.setState({editModalShow:true,
-        empid:emp.EmployeeId,empfirstname:emp.Firstname,emplastname:emp.Lastname, empposition:emp.Position,depmt:emp.Department,photofilename:emp.PhotoFileName,doj:emp.DateOfJoining,basesalary:emp.BaseSalary, increase:emp.Increase, grossprizes:emp.GrossPrizes, deductions:emp.Deductions})}>
-            Edit
+        empid:emp.EmployeeId,empfirstname:emp.Firstname,emplastname:emp.Lastname, empposition:emp.Position,depmt:emp.DepartmentId,photofilename:emp.PhotoFileName,doj:emp.DateOfJoining,basesalary:emp.BaseSalary, increase:emp.Increase, grossprizes:emp.GrossPrizes, deductions:emp.Deductions})}>
+            Modifică
         </Button>
 
         <Button className="mr-2" variant="danger"
     onClick={()=>this.deleteEmp(emp.EmployeeId)}>
-            Delete
+            Șterge
         </Button>
 
         <EditEmpModal show={this.state.editModalShow}
@@ -109,10 +109,10 @@ export class Employee extends Component{
 
                 </Table>
 
-                { this.props.user.User_Role === 'admin' && <ButtonToolbar id="EmpAdd" >
+                { this.props.user.UserRole === 'admin' && <ButtonToolbar id="EmpAdd" >
                     <Button variant='dark'
                     onClick={()=>this.setState({addModalShow:true})}>
-                    Add Employee</Button>
+                    Adaugă Angajat</Button>
 
                     <AddEmpModal show={this.state.addModalShow}
                     onHide={addModalClose} />

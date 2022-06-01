@@ -49,11 +49,11 @@ centered
             <Col sm={6}>
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group controlId="DepartmentName">
-                        <Form.Label>DepartmentName</Form.Label>
+                        <Form.Label>Department Name</Form.Label>
                         <Form.Control type="text" name="DepartmentName" required 
                         placeholder="DepartmentName"/>
                     </Form.Group>
-
+                    <br />
                     <Form.Group>
                         <Button variant="dark" type="submit">
                             Add Department

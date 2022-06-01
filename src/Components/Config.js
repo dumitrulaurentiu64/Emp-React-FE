@@ -36,7 +36,7 @@ const Config = (props) => {
         })
         .then(res=>res.json())
         .then((result)=>{
-            alert(result);
+            alert('Configuration succesfully updated!');
         },
         (error)=>{
             alert('Failed');
@@ -60,40 +60,40 @@ const Config = (props) => {
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicTax">
                     <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
+                        Valorile de mai jos sunt folosite în calculul salariului. <br /> 
+                        Este necesară o atenție suplimentară la modificarea acestor valori.
                     </Form.Text>
                     <br /> <br />
-                    <Form.Label>Tax</Form.Label>
-                    <Form.Control type="number" name="Tax" min="1" max="99" defaultValue={taxes.Tax} required/>
+                    <Form.Label>Impozit</Form.Label>
+                    <Form.Control type="number" name="Tax" min="0" max="99" defaultValue={taxes.Tax} required/>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicCAS">
                     <Form.Label>CAS</Form.Label>
-                    <Form.Control type="number" name="CAS" min="1" max="99" defaultValue={taxes.CAS} required/>
+                    <Form.Control type="number" name="CAS" min="0" max="99" defaultValue={taxes.CAS} required/>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicCASS">
                     <Form.Label>CASS</Form.Label>
-                    <Form.Control type="number" name="CASS" min="1" max="99" defaultValue={taxes.CASS} required/>
+                    <Form.Control type="number" name="CASS" min="0" max="99" defaultValue={taxes.CASS} required/>
                 </Form.Group>
-                { showSubmit ? <Button variant="primary" type="submit">
-                    Submit
+                { showSubmit ? <Button variant="dark" type="submit">
+                    Trimite
                 </Button> : null } 
             </Form>
             </Div>
             <Div2>
                 <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
+                    Pentru a modifica valorile configurației este necesară introducerea parolei.
                 </Form.Text>
-                <br />
+                <br /> <br />
                 <div className="col-md-4">
                     <div className="p-3 py-4">
-                        <Form.Label>Configuration Password</Form.Label>
-                        {/* <input type="password" ref={passInput} name="password" placeholder="..." required /> */}
+                        <Form.Label>Parolă Deblocare Configurație</Form.Label>
                         <Form.Control type="password" name="password" ref={passInput} placeholder="..." required/>
 
 
-                        <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="button" onClick={handleClick}>Change Taxes</button>
+                        <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="button" onClick={handleClick}>Trimite</button>
                     </div>
                     </div>
                 </div>

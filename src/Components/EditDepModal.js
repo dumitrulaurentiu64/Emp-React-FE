@@ -40,7 +40,7 @@ centered
 >
     <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-            Edit Department
+            Modifică Departament
         </Modal.Title>
     </Modal.Header>
     <Modal.Body>
@@ -49,7 +49,7 @@ centered
             <Col sm={6}>
                 <Form onSubmit={this.handleSubmit}>
                 <Form.Group controlId="DepartmentId">
-                        <Form.Label>DepartmentId</Form.Label>
+                        <Form.Label>Cod Departament</Form.Label>
                         <Form.Control type="text" name="DepartmentId" required
                         disabled
                         defaultValue={this.props.depid} 
@@ -57,15 +57,15 @@ centered
                     </Form.Group>
 
                     <Form.Group controlId="DepartmentName">
-                        <Form.Label>DepartmentName</Form.Label>
+                        <Form.Label>Nume Departament</Form.Label>
                         <Form.Control type="text" name="DepartmentName" required className="form-control form-control-sm"
                         defaultValue={this.props.depname}
                         placeholder="DepartmentName"/>
                     </Form.Group>
-
+                    <br />
                     <Form.Group>
                         <Button variant="primary" type="submit">
-                            Update Department
+                            Actualizează Departament
                         </Button>
                     </Form.Group>
                 </Form>

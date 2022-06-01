@@ -25,6 +25,7 @@ export class AddTaxesModal extends Component{
         .then(res=>res.json())
         .then((result)=>{
             alert('Tax configuration was succesful!');
+            this.props.onHide();
         },
         (error)=>{
             alert('Tax configuration failed!');

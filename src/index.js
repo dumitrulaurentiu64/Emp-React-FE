@@ -8,7 +8,7 @@ const user = ({
   Id: 0,
   Name: 'default',
   Email: 'default@gmail.com',
-  User_Role: 'visitor'
+  UserRole: 'visitor'
 });
 
 ReactDOM.render(

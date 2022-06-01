@@ -36,28 +36,28 @@ export class Profile extends Component {
                 <div className="col-md-5 border-right">
                     <div className="p-3 py-5">
                         <div className="d-flex justify-content-between align-items-center mb-3">
-                            <h4 className="text-right">Profile Settings</h4>
+                            <h4 className="text-right">Profil Utilizator</h4>
                         </div>
                         <div className="row mt-2">
-                            <div className="col-md-6"><label className="labels">Firstname</label><input type="text" className="form-control" defaultValue={this.state.profile.Firstname} readOnly></input></div>
-                            <div className="col-md-6"><label className="labels">Lastname</label><input type="text" className="form-control" defaultValue={this.state.profile.Lastname} readOnly></input></div>
+                            <div className="col-md-6"><label className="labels">Prenume</label><input type="text" className="form-control" defaultValue={this.state.profile.Firstname} readOnly></input></div>
+                            <div className="col-md-6"><label className="labels">Nume</label><input type="text" className="form-control" defaultValue={this.state.profile.Lastname} readOnly></input></div>
                         </div>
                         <div className="row mt-3">
                             
-                            <div className="col-md-12"><label className="labels">Department</label><input type="text" className="form-control" defaultValue={this.state.profile.Department} readOnly ></input></div>
-                            <div className="col-md-12"><label className="labels">Position</label><input type="text" className="form-control" defaultValue={this.state.profile.Position} readOnly></input></div>
-                            <div className="col-md-12"><label className="labels">Date of joining</label><input type="date" className="form-control" defaultValue={this.state.profile.DateOfJoining} readOnly></input></div>
+                            <div className="col-md-12"><label className="labels">Departament</label><input type="text" className="form-control" defaultValue={this.state.profile.DepartmentId} readOnly ></input></div>
+                            <div className="col-md-12"><label className="labels">Funcție</label><input type="text" className="form-control" defaultValue={this.state.profile.Position} readOnly></input></div>
+                            <div className="col-md-12"><label className="labels">Data Aderării</label><input type="date" className="form-control" defaultValue={this.state.profile.DateOfJoining} readOnly></input></div>
                         </div>
                         <div className="row mt-3">
-                            <div className="col-md-6"><label className="labels">Base Salary</label><input type="number" className="form-control" defaultValue={this.state.profile.BaseSalary} readOnly></input></div>
-                            <div className="col-md-6"><label className="labels">Net Salary</label><input type="number" className="form-control" defaultValue={this.state.profile.NetSalary} readOnly></input></div>
+                            <div className="col-md-6"><label className="labels">Salar Bază</label><input type="number" className="form-control" defaultValue={this.state.profile.BaseSalary} readOnly></input></div>
+                            <div className="col-md-6"><label className="labels">Salariu Net</label><input type="number" className="form-control" defaultValue={this.state.profile.NetSalary} readOnly></input></div>
                         </div>
                     </div>
                 </div>
                 <div className="col-md-3">
                     <div className="p-3 py-5">
                         <br />
-                        <div className="mt-5 text-center"><button className="btn btn-primary profile-button" onClick={()=>this.setState({changePassModalShow:true})} type="button">Change Password</button>
+                        <div className="mt-5 text-center"><button className="btn btn-primary profile-button" onClick={()=>this.setState({changePassModalShow:true})} type="button">Schimbă Parola</button>
                             <ChangePassModal email={this.props.user.Email} show={this.state.changePassModalShow} onHide={changePassModalClose}/>
                         </div>
                     </div>

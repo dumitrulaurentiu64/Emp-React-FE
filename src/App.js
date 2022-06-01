@@ -31,7 +31,7 @@ function App(props) {
             if(content.title !== 'Unauthorized')
             {
               props.user.Id = content.Id;
-              props.user.User_Role = content.User_Role;
+              props.user.UserRole = content.UserRole;
               props.user.Email = content.Email;
               props.user.Name = content.Firstname;
               setLoggingState(true);
@@ -45,7 +45,7 @@ function App(props) {
       <BrowserRouter>
         <div className="container" id="AppTitle">
         <h3 className ="m-3 d-flex justify-content-center">
-          Salary Application
+          Aplicație salarizare
         </h3>
       </div>
 
@@ -66,7 +66,7 @@ function App(props) {
 
   function getRole()
   {
-    return props.user.User_Role;
+    return props.user.UserRole;
   }
 }
 export default App;

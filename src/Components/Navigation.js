@@ -19,7 +19,7 @@ const Navigation = (props) => {
             credentials:'include'
         });
         props.setLoggingState(false);
-        props.user.User_Role = 'visitor';
+        props.user.UserRole = 'visitor';
     }
 
     let menu;
@@ -27,13 +27,13 @@ const Navigation = (props) => {
     {
         menu = (
             <NavLink to='/' onClick={logout} className="nav-link" >
-                <Dropdown.Item href="/">Logout</Dropdown.Item>
+                <Dropdown.Item href="/">Deconectare</Dropdown.Item>
             </NavLink>
         );
     }  else {
         menu = (
             <NavLink to="/" className="nav-link" >
-                <Dropdown.Item href="/">Login</Dropdown.Item>
+                <Dropdown.Item href="/">Autentificare</Dropdown.Item>
             </NavLink>
         );
     }
@@ -44,23 +44,23 @@ const Navigation = (props) => {
                 <div className="container-fluid">
                     <div>
                         { props.isLoggedIn && getRole() !== VISITOR && 
-                            <NavLink id="exceptionlink" to="/Profile" className="navbar-brand">Welcome {props.user.Name}!</NavLink> }
+                            <NavLink id="exceptionlink" to="/Profile" className="navbar-brand">Bună {props.user.Name}!</NavLink> }
                         { props.isLoggedIn && getRole() === ADMIN && 
-                            <NavLink  to="/config" className="navbar-brand">Configuration</NavLink> }
-                        { props.isLoggedIn && getRole() !== VISITOR && <NavLink to="/Department" className="navbar-brand">Departments</NavLink> }
-                        { props.isLoggedIn && getRole() !== VISITOR && <NavLink to="/Employee" className="navbar-brand">Employees</NavLink> }
-                        { props.isLoggedIn && getRole() !== VISITOR && <NavLink to="/Flyer" className="navbar-brand">Flyer</NavLink> }
+                            <NavLink  to="/config" className="navbar-brand">Configurație</NavLink> }
+                        { props.isLoggedIn && getRole() !== VISITOR && <NavLink to="/Department" className="navbar-brand">Departamente</NavLink> }
+                        { props.isLoggedIn && getRole() !== VISITOR && <NavLink to="/Employee" className="navbar-brand">Angajați</NavLink> }
+                        { props.isLoggedIn && getRole() !== VISITOR && <NavLink to="/Flyer" className="navbar-brand">Stat de plată</NavLink> }
                     </div>
                     <div>
                         <Dropdown>
                             <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
-                                Settings
+                                Setări
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu variant="dark">
                                 {props.isLoggedIn && getRole() !== 'visitor' &&  
                                 <NavLink to="/Profile" className="nav-link" >
-                                <Dropdown.Item href="/Profile">Profile</Dropdown.Item>
+                                <Dropdown.Item href="/Profile">Profil</Dropdown.Item>
                                 </NavLink>
                                 }
                                 {menu}
@@ -75,7 +75,7 @@ const Navigation = (props) => {
 
 function getRole()
   {
-    return props.user.User_Role;
+    return props.user.UserRole;
   }
 };
 

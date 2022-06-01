@@ -40,7 +40,7 @@ export class Login extends Component {
         if(content.title !== 'Unauthorized')
         {
             this.props.user.Id = content.Id;
-            this.props.user.User_Role = content.User_Role;
+            this.props.user.UserRole = content.UserRole;
             this.props.user.Email = content.Email;
             this.props.user.Name = content.Firstname;
             this.props.setLoggingState(true);
@@ -81,11 +81,11 @@ export class Login extends Component {
         if (this.state.firstStartup === false) {
             return (
                 <div className="d-grid gap-2" id="login">
-                    <h1>Authentication</h1>
+                    <h1>Autentificare</h1>
                     <Form onSubmit={this.handleSubmit.bind(this)}>
                         <br />
                         <Form.Text className="text-muted">
-                            Use a local account for authentication. <br /> 
+                            Utilizați un cont local pentru autentificare. <br /> 
                         </Form.Text>
                         <br />
                         <Form.Group controlId="Email">
@@ -95,7 +95,7 @@ export class Login extends Component {
                         </Form.Group>
     
                         <Form.Group controlId="Password">
-                            <Form.Label>Password</Form.Label>
+                            <Form.Label>Parolă</Form.Label>
                             <Form.Control
                             type="password"
                             name="Password"
@@ -105,7 +105,7 @@ export class Login extends Component {
                         <br />
                         <Form.Group>
                             <Button variant="dark" type="submit" id="LoginBtn">
-                                Login
+                                Autentificare
                             </Button>
                         </Form.Group>
                     </Form>
@@ -116,40 +116,40 @@ export class Login extends Component {
             let addTaxesModalClose=()=>this.setState({addTaxesModalShow:false});
             return (
                 <div className="d-grid gap-2" id="initialConfig">
-                    <h1>Initial Configuration</h1>
+                    <h1>Configurație Inițială</h1>
                     <br />
                     <Form.Text className="text-muted">
-                        Before using the application an initial configuration is needed. <br /> 
-                        The initial configuration consists in adding the first admin user of the application and setting the salary taxes values.
+                        Înainte de a utiliza aplicația este necesară efectuarea unei configurații inițiale. <br />
+                        Configurarea inițială constă în adăugarea primului utilizator administrator al aplicației și stabilirea valorilor impozitelor pe salarii.
                     </Form.Text>
                     <br />
                     <Button variant='dark' size="lg"
                         onClick={()=>this.setState({addModalShow:true})}>
-                    Add Admin User
+                    Adaugă administrator
                     </Button>
                     <br />
                     <Form.Text className="text-muted">
-                        Take extra caution when adding the values. <br />
-                        If you did insert the wrong values, no worries! You can easily change them after logging in.
+                        Acordarea unei atenții sporite este recomandată la adăugarea valorilor. <br />
+                        Dacă au fost introduse valori greșite acestea pot fi cu ușurință corectate ulterior.
                     </Form.Text>
                     <AddEmpModal show={this.state.addModalShow}
                     onHide={addModalClose} />
                     <br />
                     <Button variant='dark' size="lg"
                         onClick={()=>this.setState({addTaxesModalShow:true})}>
-                    Configure Taxes
+                    Configurează valori taxe
                     </Button>
                     <br />
                     <Form.Text className="text-muted">
-                        If the two steps above were finalized, the application is all set and done. <br />
-                        Congratulations!
+                        Dacă cei doi pași de mai sus au fost finalizați, aplicația este pregătită și gata de utilizare. <br />
+                        Felicitări!
                     </Form.Text>
                     <AddTaxesModal show={this.state.addTaxesModalShow}
                     onHide={addTaxesModalClose}/>
                     <br />
                     <Button variant='dark' size="lg"
                         onClick={refreshPage}>
-                    Initial Setup Done
+                    Configurație Inițială Finalizată
                     </Button>
 
                 </div>

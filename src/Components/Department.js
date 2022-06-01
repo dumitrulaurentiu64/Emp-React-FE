@@ -29,7 +29,7 @@ export class Department extends Component{
     }
 
     deleteDep(depid){
-        if(window.confirm('Are you sure?')){
+        if(window.confirm('Are you sure you want to delete this department??')){
             fetch(process.env.REACT_APP_API+'department/'+depid,{
                 method:'DELETE',
                 header:{'Accept':'application/json',
@@ -47,9 +47,9 @@ export class Department extends Component{
                 <Table className="mt-4 mx-4" striped bordered hover size ="sm" id="DepTable">
                     <thead>
                         <tr>
-                            <th>DepartmentId</th>
-                            <th>DepartmentName</th>
-                            { this.props.user.User_Role === 'admin' && <th>Options</th> }
+                            <th>Cod Departament</th>
+                            <th>Nume Departament</th>
+                            { this.props.user.UserRole === 'admin' && <th>Opțiuni</th> }
                         </tr>
                     </thead>
                     <tbody>
@@ -57,17 +57,17 @@ export class Department extends Component{
                             <tr key={dep.DepartmentId}>
                                 <td>{dep.DepartmentId}</td>
                                 <td>{dep.DepartmentName}</td>
-                                { this.props.user.User_Role === 'admin' && <td>
+                                { this.props.user.UserRole === 'admin' && <td>
 <ButtonToolbar id="DepOptions">
     <Button className="mr-2" variant="secondary"
     onClick={()=>this.setState({editModalShow:true,
         depid:dep.DepartmentId,depname:dep.DepartmentName})}>
-            Edit
+            Modifică
         </Button>
 
         <Button className="mr-2" variant="danger"
     onClick={()=>this.deleteDep(dep.DepartmentId)}>
-            Delete
+            Șterge
         </Button>
 
         <EditDepModal show={this.state.editModalShow}
@@ -83,10 +83,10 @@ export class Department extends Component{
 
                 </Table>
 
-                { this.props.user.User_Role === 'admin' && <ButtonToolbar id="DepAdd">
+                { this.props.user.UserRole === 'admin' && <ButtonToolbar id="DepAdd">
                     <Button variant='dark'
                     onClick={()=>this.setState({addModalShow:true})}>
-                    Add Department</Button>
+                    Adaugă Departament</Button>
 
                     <AddDepModal show={this.state.addModalShow}
                     onHide={addModalClose}/>

@@ -6,32 +6,33 @@ export default function Flyer(props){
     <div id="flyer-content">   
         <Div>
         <Card style={{ width: '25rem' }}>
-            <Card.Img variant="top" src={process.env.REACT_APP_PHOTOPATH+'MyFlyer.png'}/>
+            <Card.Img variant="top" src={process.env.REACT_APP_PHOTOPATH+'Payroll.png'}/>
             <Card.Body>
-                <Card.Title>My Flyer</Card.Title>
+                <Card.Title>Payroll</Card.Title>
                 <Card.Text>
-                Some quick example text to build on the card title and make up the bulk of
-                the card's content.
+                    To view the payroll report for this month 
+                    click on the button below.
                 </Card.Text>
-                <a  className="btn btn-success" href={process.env.REACT_APP_API+'Flyer/'+props.user.Id} target="_blank" rel="noreferrer">Print</a>
+                <a  className="btn btn-success" href={process.env.REACT_APP_API+'Payroll/'+props.user.Id} target="_blank" rel="noreferrer">Print</a>
             </Card.Body>
             </Card>
         </Div>
 
         <Div2>
+        { props.user.UserRole === 'admin' && 
             <Card style={{ width: '25rem' }}>
-            <Card.Img variant="top" src={process.env.REACT_APP_PHOTOPATH+'AllFlyers.png'}/>
+            <Card.Img variant="top" src={process.env.REACT_APP_PHOTOPATH+'EmpReport.png'}/>
             <Card.Body>
-                <Card.Title>All employees flyers</Card.Title>
+                <Card.Title>Employees Report</Card.Title>
                 <Card.Text>
-                Some quick example text to build on the card title and make up the bulk of
-                the card's content.
+                    To view the report for all the employees this month
+                    click on the button below.
                 </Card.Text>
-                { props.user.User_Role === 'admin' && <a  className="btn btn-success" href={process.env.REACT_APP_API+'Flyer'} target="_blank" rel="noreferrer">Print</a> }
+                { props.user.UserRole === 'admin' && <a  className="btn btn-success" href={process.env.REACT_APP_API+'Payroll'} target="_blank" rel="noreferrer">Print</a> }
             </Card.Body>
             </Card>
-        </Div2>
-
+        }
+        </Div2> 
     </div>
     );
 
